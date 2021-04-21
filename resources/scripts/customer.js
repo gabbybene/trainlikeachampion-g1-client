@@ -164,7 +164,7 @@ function showEditCustApptModal(apptID){
         
         //set up HTML 
         let html = "<div class=\"modal-content\"><span class=\"close\" onclick=\"closeEditCustApptModal()\">&times;</span>";
-        html += "<h1 class=\"modal-header\">Appoitment Details</h1><br>";
+        html += "<h1 class=\"modal-header\">Appointment Details</h1><br>";
         html += "<div class=\"row\"><div class=\"col-md-4\"><h3>Date/Time:</h3></div><div class=\"col-md-8\"><h3>";
         html += appt.apptDate + " at " + appt.startTime + "-" +  appt.endTime  +"</h3></div></div>";
         html += "<div class=\"row\"><div class=\"col-md-4\"><h3>Trainer:</h3></div><div class=\"col-md-8\"><h3>"+ appt.trainerName+"</h3></div></div>";
@@ -202,7 +202,7 @@ function cancelCustApptOnClick(apptID){
     .then(function(response){
         //when they cancel the appointment, change the modal html to show that the apointment was canceled, and change button to close.
         let html = " <div class=\"modal-content\"><span class=\"close\" onclick=\"apptCanceledCloseModal()\">&times;</span>";
-        html += "<h1 class=\"modal-header\">Appoitment Canceled</h1><br>";
+        html += "<h1 class=\"modal-header\">Appointment Canceled</h1><br>";
         html += "<div class=\"row text-center\"><h2>This appointment has been canceled.</h2></div>"; 
         html += "<div class=\"row text-center\"><h2>Click the button to return to your dashboard to search for other appointments.</h2></div>";
         html += "<br><button class=\"btn btn-action\" onclick=\"apptCanceledCloseModal()\">Close</button>";
@@ -458,7 +458,7 @@ function showApptDetails(apptID){
         html += "<label class=\"form-check-label\" for=\"payingCash\">Cash</label></div></div>";
         html += "<div class=\"col-md-12\"><label for=\"amountPaid\" style=\"padding-left: 24px;\">Enter amount:</label>";
         html += "<input type=\"number\" id=\"amountPaid\" placeholder=\"Enter amount here\"></div><small id=\"insufficientCashMessage\" class=\"text-muted\" style=\"display: none\">Amount entered must be equal to the price of the appointment.</small></div>";
-        html += "<div class=\"form-check\"><div class=\"row\"><div class=\"col-md-12\"><input class=\"form-check-input\" type=\"radio\" name=\"flexRadioDefault\" id=\"payingCard\" onchange=\"toggleCreditCardForm()\" disabled>"; //DISABLED
+        html += "<div class=\"form-check\"><div class=\"row\"><div class=\"col-md-12\"><input class=\"form-check-input\" type=\"radio\" name=\"flexRadioDefault\" id=\"payingCard\" onchange=\"toggleCreditCardForm()\">"; //DISABLED
         html += "<label class=\"form-check-label\" for=\"payingCard\">Credit Card</label></div></div></div>";
         html += "</form>";
 

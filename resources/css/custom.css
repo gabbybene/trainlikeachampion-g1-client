@@ -18,6 +18,13 @@
     padding: 20%;
 }
 
+.act-img {
+    max-width: 500px;
+}
+.act-img img {
+    max-width: 100%;
+}
+
 /*--custom styling for small screens for modals--*/
 /* @media all and (max-width: 768px){
 	.signup-form{
