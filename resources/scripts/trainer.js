@@ -17,7 +17,8 @@ function handleTrainerDashboardOnLoad(){ //load each part of dashboard
     //update href of MyAccount in navbar
     
     // let trainer = [];
-    const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+id;
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -52,7 +53,8 @@ function getConfirmedAppointments(trainer){
     //get any trainer appointments that have "customer" !=null and trainerID matches trainerID
     let html = "";
     let id = getTrainerId();
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForTrainer/"+id;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForTrainer/"+id;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetConfirmedAppointmentsForTrainer/"+id;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -129,7 +131,8 @@ function getFormattedTime(hours, minutes){
 function showEditTrainerApptModal(apptID){
     //get appointment by ID, then populate and show the modal
         //Make API call to get appointment with the passed-in ID from the database
-        const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+        // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+        const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
         fetch(apptApiUrl).then(function(response){
             console.log(response);
             return response.json();
@@ -183,7 +186,8 @@ window.onclick = function(event){
 
 function cancelTrainerAppt(apptID) {
     //tell user the appt is canceled with a close button
-    const cancelApptApiUrl = "https://localhost:5001/api/Appointment/"+apptID;
+    // const cancelApptApiUrl = "https://localhost:5001/api/Appointment/"+apptID;
+    const cancelApptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/"+apptID;
     //make an int[] to send into the put request. [0]=custID, [1]=apptID
     fetch(cancelApptApiUrl, {
         method: "DELETE",
@@ -210,7 +214,8 @@ function apptCanceledCloseModal(){
     //reload the confirmedAppointments and TrainerCalendar sections to reflect the update
     let id = getTrainerId();
     let trainer = [];
-    const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+id;
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -324,7 +329,8 @@ function showEditAvailabilityModal(selectedDate){
 
     //get any AVAILABLE appointments associated w/ TrainerID on that datet
     let trainerId = getTrainerId();
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDateForTrainer/"+trainerId+"/"+selectedDate;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDateForTrainer/"+trainerId+"/"+selectedDate;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAvailableAppointmentsByDateForTrainer/"+trainerId+"/"+selectedDate;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -436,7 +442,8 @@ function getActivityCellsForAppt(apptArray, i, trainerId){
 function updateDisabledActivities(i){
     //update select options to be enabled/disabled according to Trainer's CanDo activities
     let trainerId = getTrainerId();
-    const trainerApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainerId;
+    // const trainerApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainerId;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Activity/GetTrainerActivities/"+trainerId;
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -510,7 +517,8 @@ function addRow(count, selectedDate){
 
 function updateApptPrice(i, trainerId){
     //depending on what is selected, update the price in the price-i field
-    const activityApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainerId;
+    // const activityApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainerId;
+    const activityApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Activity/GetTrainerActivities/"+trainerId;
     fetch(activityApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -573,7 +581,8 @@ function editAvailableAppt(apptID){
         endTime: newEndTime,
         activityId: newActivityID
     }
-    const putApptApiUrl = "https://localhost:5001/api/Appointment/PutAvailableAppointment/"+apptID+"/"+newStartTime+"/"+newEndTime+"/"+newActivityID;
+    // const putApptApiUrl = "https://localhost:5001/api/Appointment/PutAvailableAppointment/"+apptID+"/"+newStartTime+"/"+newEndTime+"/"+newActivityID;
+    const putApptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutAvailableAppointment/"+apptID+"/"+newStartTime+"/"+newEndTime+"/"+newActivityID;
     fetch(putApptApiUrl, {
         method: "PUT",
         headers: {
@@ -630,7 +639,8 @@ function validateNewAppt(i, date){
         }
         console.log("activityId of the new appt: " + bodyObj.appointmentActivity.activityId);
         //make POST call to create new appt with bodyObj, startTime, and endTime
-        const apptApiUrl = "https://localhost:5001/api/Appointment/WriteAvailableAppointment/"+newStartTime+"/"+newEndTime;
+        // const apptApiUrl = "https://localhost:5001/api/Appointment/WriteAvailableAppointment/"+newStartTime+"/"+newEndTime;
+        const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/WriteAvailableAppointment/"+newStartTime+"/"+newEndTime;
         fetch(apptApiUrl, {
             method: "POST",
             headers: {
@@ -650,7 +660,8 @@ function validateNewAppt(i, date){
 
 function deleteAppointment(apptID, date){
     //delete appointment by ID
-    const apptApiUrl = "https://localhost:5001/api/appointment/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/"+apptID;
     console.log(apptID);
     fetch(apptApiUrl, {
         method: "DELETE",
@@ -708,7 +719,8 @@ function getTrainerProfileForm(trainer){
     console.log(trainer.phoneNo);
  
     //get activities for trainer, update checked/price fields as needed
-    const activityApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainer.trainerId;
+    // const activityApiUrl = "https://localhost:5001/api/Activity/GetTrainerActivities/"+trainer.trainerId;
+    const activityApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Activity/GetTrainerActivities/"+trainer.trainerId;
     fetch(activityApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -746,7 +758,8 @@ function getTrainerProfileForm(trainer){
 function trainerEditProfile(){
     let id = getTrainerId();
     let trainer = [];
-    const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+id;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+id;
     //GET Trainer by ID
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
@@ -767,7 +780,8 @@ function trainerEditProfile(){
             let bodyObj = getUpdatedTrainerObj(trainer);
             
             //PUT new trainer object
-            const putTrainerApiUrl = "https://localhost:5001/api/Trainer/";
+            // const putTrainerApiUrl = "https://localhost:5001/api/Trainer/";
+            const putTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer";
             fetch(putTrainerApiUrl, {
                 method: "PUT",
                 headers: {
@@ -779,7 +793,8 @@ function trainerEditProfile(){
             .then(function(response){
                 console.log(response);
                 //reload trainer profile form
-                const getTrainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+trainer.trainerId;
+                // const getTrainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+trainer.trainerId;
+                const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+trainer.trainerId;
                 fetch(getTrainerApiUrl).then(function(response){
                     console.log(response);
                     return response.json();

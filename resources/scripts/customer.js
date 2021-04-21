@@ -14,7 +14,8 @@ var currentYear = today.getFullYear();
 function handleCustomerDashboardOnLoad(){ //load each part of dashboard
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -41,7 +42,8 @@ function getCustomerObject(){
     var id = getCustomerId();
     let customer = [];
 
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -64,7 +66,8 @@ function getConfirmedAppointments(customer){
     //Get appointments from DB that match the customer ID In the url & have a date of today or in the future.
     //return that array of appointment objects
     let html = "";
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -140,7 +143,8 @@ function getFormattedTime(hours, minutes){
 //FOR EDIT CUSTOMER APPT MODAL in viewCustAppointments section
 function showEditCustApptModal(apptID){
     //Make API call to get appointment with the passed-in ID from the database
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -184,7 +188,8 @@ function cancelCustApptOnClick(apptID){
     //get customerID and create a body Object to send in the PUT request
     let customerId = getCustomerId();
     let bodyObj = [customerId, apptID];
-    const cancelApptApiUrl = "https://localhost:5001/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
+    // const cancelApptApiUrl = "https://localhost:5001/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
+    const cancelApptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
     //make an int[] to send into the put request. [0]=custID, [1]=apptID
     fetch(cancelApptApiUrl, {
         method: "PUT",
@@ -210,7 +215,8 @@ function apptCanceledCloseModal(){
     //if customer canceled an appointment, reload their confirmed appts & the available appt calendar, THEN close the modal
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -251,7 +257,8 @@ function getAvailableAppointmentCalendar(currentMonth, currentYear){
     let d = new Date(currentYear, mon);
 
     //GET DISTINCT dates of available appointments, for use in populating the calendar
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetDistinctAvailableAppointments";
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetDistinctAvailableAppointments";
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointments/GetDistinctAvailableAppointments";
     var fullDistinctDateTimeArray = []; 
     var distinctDateArray = []; 
     fetch(apptApiUrl).then(function(response){
@@ -368,7 +375,8 @@ function showMakeAppointmentModal(value){
     let selectedDate = value;
     
     //Make API call to get available appointments matching user-selected date
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -418,7 +426,8 @@ function showMakeAppointmentModal(value){
 
 function showApptDetails(apptID){
     //Make API call to get appointment details corresponding to the id
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -484,7 +493,8 @@ function toggleCreditCardForm(){
 
 function addCustToAppointment(apptID){
       //Make API call to get appointment details corresponding to the id
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){          
         console.log(response);
         return response.json();
@@ -551,7 +561,8 @@ function addCustToAppointment(apptID){
             }
             console.log(JSON.stringify(bodyObj));
 
-            const addCustApiUrl = "https://localhost:5001/api/Appointment/PutByAddingCustomer/";
+            // const addCustApiUrl = "https://localhost:5001/api/Appointment/PutByAddingCustomer/";
+            const addCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByAddingCustomer/";
             fetch(addCustApiUrl, {
                 method: "PUT",
                 headers: {
@@ -588,7 +599,8 @@ function closeMakeAppointmentModal(){
     //if customer made an appointment, reload the the calendar & available appointments, then close the modal
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -656,7 +668,8 @@ function custEditProfile(){
     //get current customer object
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -680,7 +693,8 @@ function custEditProfile(){
             if(document.getElementById("yesReferred").checked){
                 let referredByEmail = document.getElementById("referrerName").value;
                 let referredById;
-                const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+                // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+                const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
                 fetch(findReferredApiUrl).then(function(response){
                     console.log(response);
                     return response.json();
@@ -691,7 +705,8 @@ function custEditProfile(){
                     //if referredById was found, create customer object to send in body of PUT request
                     let bodyObj = getUpdatedCustomerObj();
 
-                    const putCustApiUrl = "https://localhost:5001/api/Customer/PutCustomerWithReferredBy/"+referredById;
+                    // const putCustApiUrl = "https://localhost:5001/api/Customer/PutCustomerWithReferredBy/"+referredById;
+                    const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PutCustomerWithReferredBy/"+referredById;
                     //make api call to UPDATE customer
                     fetch(putCustApiUrl, {
                         method: "PUT",
@@ -702,7 +717,8 @@ function custEditProfile(){
                         body: JSON.stringify(bodyObj)
                     }).then(function(response){
                         //get updated customer to reload form
-                        const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                        // const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                        const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
                         fetch(getCustApiUrl).then(function(response){
                             console.log(response);
                             return response.json();
@@ -722,7 +738,8 @@ function custEditProfile(){
                 //if referredBy is not checked, get customer object to send in body of PUT request
                 let referredById = "";
                 let bodyObj = getUpdatedCustomerObj();
-                const putCustApiUrl = "https://localhost:5001/api/Customer/";
+                // const putCustApiUrl = "https://localhost:5001/api/Customer/";
+                const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/";
                     //make api call to UPDATE customer
                     fetch(putCustApiUrl, {
                         method: "PUT",
@@ -733,7 +750,8 @@ function custEditProfile(){
                         body: JSON.stringify(bodyObj)
                     }).then(function(response){
                         //get updated customer to reload form
-                        const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                        // const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                        const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
                         fetch(getCustApiUrl).then(function(response){
                             console.log(response);
                             return response.json();
