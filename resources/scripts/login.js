@@ -55,7 +55,8 @@ function handleCustomerSignIn()
     let customer = "";
     let errorMsgHtml = "";
 
-    const customerApiUrl = "https://localhost:5001/api/Customer/"+inputEmail;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/"+inputEmail;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+inputEmail;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -224,7 +225,8 @@ function handleCreateNewCustOnClick(){
     if(referredByEmail != undefined || referredByEmail != ""){
         //if user entered a referredByEmail
         let referredById;
-        const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+        // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+        const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer"+referredByEmail;
         fetch(findReferredApiUrl).then(function(response){
             console.log(response);
             return response.json();
@@ -250,7 +252,8 @@ function handleCreateNewCustOnClick(){
             console.log("TEST");
             console.log(JSON.stringify(bodyObj));
 
-            const postCustApiUrl = "https://localhost:5001/api/Customer/PostCustomerWithReferredBy/"+referredById;
+            // const postCustApiUrl = "https://localhost:5001/api/Customer/PostCustomerWithReferredBy/"+referredById;
+            const postCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PostCustomerWithReferredBy/"+referredById;
             //make api call to CREATE customer
             fetch(postCustApiUrl, {
                 method: "POST",
@@ -282,7 +285,8 @@ function handleCreateNewCustOnClick(){
         };
     
         //make api call to CREATE customer
-        const customerApiUrl = "https://localhost:5001/api/Customer";
+        // const customerApiUrl = "https://localhost:5001/api/Customer";
+        const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer";
         fetch(customerApiUrl, {
             method: "POST",
             headers: {
@@ -304,7 +308,8 @@ function handleCreateNewCustOnClick(){
 
 function sendCustomerToDashboard(email){
     //get new customer's id and send them to ./customer.html?id=@id@
-    const getCustomerApiUrl = "https://localhost:5001/api/Customer/"+email;
+    // const getCustomerApiUrl = "https://localhost:5001/api/Customer/"+email;
+    const getCustomerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+email;
     fetch(getCustomerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -365,7 +370,8 @@ function handleTrainerSignIn(){
     let trainer = "";
     let errorMsgHtml = "";
 
-    const trainerApiUrl = "https://localhost:5001/api/Trainer/"+inputEmail;
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer/"+inputEmail;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+inputEmail;
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -487,7 +493,8 @@ function validateNewTrainerInputs(){
 }
 
 function createNewTrainer(){ 
-    const trainerApiUrl = "https://localhost:5001/api/Trainer";
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer";
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer";
 
     //get trainer data
     let inputEmail = document.getElementById("newTrainerEmail").value;
@@ -574,7 +581,8 @@ function createNewTrainer(){
 
 function sendTrainerToDashboard(email){
     //get new customer's id and send them to Trainer Dashboard
-    const getTrainerApiUrl = "https://localhost:5001/api/Trainer/"+email;
+    // const getTrainerApiUrl = "https://localhost:5001/api/Trainer/"+email;
+    const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+email;
     fetch(getTrainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
