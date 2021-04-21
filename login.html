@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="icon" href="./resources/images/tlac-icon.png" type="image/png" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--UPDATE THESE 2 META TAGS-->
+  <meta name="description" content="TLAC Login">
+  <meta name="keywords" content="login, personal training, training, gym, trainer, exercise, train like a champion">
+  <!--CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all">
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+  <link rel="stylesheet" href="./resources/css/animate.css">
+  <link rel="stylesheet" href="./resources/css/owl.carousel.css">
+  <link rel="stylesheet" href="./resources/css/owl.theme.css">
+  <link rel="stylesheet" href="./resources/css/ionicons.min.css">
+  <link rel="stylesheet" href="./resources/css/style.css"  type="text/css" media="all"/>
+  <!-- the stylesheets above this line came from the website template-->
+  <link rel="stylesheet" href="resources/css/custom.css"> <!-- my custom css-->
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand page-scroll" href="./index.html"><img class="img-fluid" src="./resources/images/tlac-white-logo-150.png" alt="logo" /></a> </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a class="page-scroll" href="./index.html">Home</a></li>
+            <li><a class="page-scroll" href="./index.html#faq">How It Works</a></li> <!--change this href-->
+            <li><a class="page-scroll" href="./index.html#services">Services</a></li> <!--change this href name-->
+            <li><a class="page-scroll" href="./login.html">Login</a></li> <!--create a #login-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /.navbar-collapse --> 
+  </div>
+    <!-- /.container-fluid -->
+
+  <!-- Select If Customer or Trainer Section-->
+  <div class="main app form" id="main-body">
+    <div class="hero-section-2" id="login-forms">
+      <div class="container nonpadding">
+        <div class="col-md-12">
+          <div class="hero-content text-center">
+            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Let's get started!</h1>
+            <h1 class="wow fadeInUp" data-wow-delay="0.2s">Are you a customer or a trainer?</h1>
+          </div>
+        </div>
+        <!--buttons for Customer or Trainer-->
+        <div class="container buttons">
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block btn-cust-trainer" id="customer-btn" onclick="showCustLoginModal()">Customer</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block btn-cust-trainer" id="trainer-btn" onclick="showTrainerLoginModal()">Trainer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--div for CUSTOMER LOGIN modal-->
+<div class="modal" id="custLoginModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <span class="close" onclick="closeCustLoginModal()">&times;</span>
+      <h1 class="wow fadeInUp">Customer Login</h1>
+    <!--login form-->
+      <hr>
+        <form class="login-form" id="logreg-forms" onsubmit="return false">
+          <h2 class="login-heading">Login</h2>
+          <label for="customerEmail">Email Address:</label>
+          <input type="email" name="email" id="customerEmail" class="form-control" placeholder="Email address" autofocus="" required="">
+          <label for="customerPassword">Password:</label>
+          <input type="password" name="password" id="customerPassword" class="form-control" placeholder="Password" required="">
+          <div class="text-center" id="custSignInErrorMsg"></div>
+          <button class="btn btn-success btn-block" type="submit" id="btn-signin" onclick="handleCustomerSignIn()">
+            <!-- onclick="handleCustomerSignIn()" -->
+          <i class="fas fa-sign-in-alt"></i> Sign in</button>
+          <hr>
+          <p style="font-style: italic;">New to our gym?</p>
+          <button class="btn btn-primary btn-lg" type="button" id="btn-new" onclick="handleNewCustomer()"><i class="fas fa-user-plus"></i> Sign up</button>
+        </form>
+      </hr>
+    </div> <!--end modal content div-->
+  </div>
+</div> <!--end customer login modal div-->
+
+<!--div for NEW CUSTOMER modal-->
+<div class="modal" id="newCustModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeNewCustModal()">&times;</span>
+    <h1 class="wow fadeInUp">New Customer</h1>
+    <!--Begin New Customer Form-->
+    <hr>
+      <form id="new-customer-form" id="logreg-forms"> <!--id="logreg-forms" will change styling-->
+        <h2 class="login-heading">Welcome! Are you ready to Train Like A Champion?</h2>
+        <div id="newUserLoginInfo" class="new-user-form-inputs form-group"> <!--Email and Password-->
+          <h4 style="font-style: italic">Your email address and password will be used to log in in the future.</h4>
+            <label for="custEmail">Email Address</label>
+            <input type="email" name="custEmail" id="custEmail" class="form-control" placeholder="Enter email address" required="" autofocus="">
+            <label for="custPassword">Password</label>
+            <input type="password" name="custPassword" id="custPassword" class="form-control" placeholder="Password" required="">
+        </div>
+        <hr>
+          <div class="row new-user-form-inputs form-group">
+            <div class="col-sm-6"> <!--first name-->
+              <label for="custFirstName">First Name</label>
+              <input type="text" name="custFirstName" id="custFirstName" class="form-control form-floating" placeholder="First Name" required>
+            </div>
+            <div class="col-sm-6"> <!--last name-->
+              <label for="custLastName">Last Name</label>
+              <input type="text" name="custLastName" id="custLastName" class="form-control form-floating" placeholder="Last Name" required>
+            </div>
+          </div> <!--end first/last name row-->
+          <div class="row new-user-form-inputs form-group">
+            <div class="col-sm-6"> <!--date of birth-->
+              <label for="newCustBirthDate">Date of Birth</label>
+              <input type="date" name="newCustBirthDate" id="newCustBirthDate" class="form-control form-floating" placeholder="Date of Birth (MM/DD/YYYY)" required>
+            </div>
+            <div class="col-sm-6"> <!--gender-->
+              <label for="custGender">Gender: How do you identify?</label>
+              <select style="padding-top: 10px; padding-bottom: 2px;" name="custGender" id="custGender" required>
+                <option value="male">Man</option>
+                <option value="female">Woman</option>
+                <option value="trans">Transgender</option>
+                <option value="nonbi">Non-binary / Non-conforming</option>
+                <option value="norsp">I'd rather not say</option>
+              </select>
+            </div>
+          </div> <!--end dob/gender row-->
+          <div class="row new-user-form-inputs form-group">
+            <div class="col-sm-6"> <!--phone number-->
+              <label for="newCustPhone">Phone Number</label>
+              <input type="tel" name="newCustPhone" id="newCustPhone" class="form-control form-floating" placeholder="numbers only (example: 1234567890)">
+            </div>
+            <div class="col-sm-6"> <!--fitness goals-->
+              <label for="fitnessGoals">Fitness Goals</label>
+              <textarea class="form-control" id="fitnessGoals" placeholder="Tell us about your goals!" rows="2" style="height:auto"></textarea>
+            </div>
+          </div> <!--end phoneNo/fitness goals row-->
+          <div class="row new-user-form-inputs form-group">
+            <div class="col-sm-6">
+              <!--Perferred Activities-->
+              <div id="preferredActivities">
+                <h3>What activites do you prefer to do?</h3>
+                <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="4" name="cardoi" id="cardio" checked>
+                  <label class="form-check-label" for="cardio">
+                    Cardio
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="14" name="strengthTraining" id="strengthTraining" checked>
+                  <label class="form-check-label" for="strengthTraining">
+                    Strength Training
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="24" name="kickboxing" id="kickboxing" checked>
+                  <label class="form-check-label" for="kickboxing">
+                    Kickboxing
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="34" name="yoga" id="yoga" checked>
+                  <label class="form-check-label" for="yoga">
+                    Yoga
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div id="referredBy"> <!--Get Referred By-->
+                <h3>Were you referred by a friend?</h3>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="yesReferred" onclick="handleReferredByOnClick()">
+                  <label class="form-check-label" for="yesReferred">
+                    Yes
+                  </label>
+                </div>
+                <div class="row">
+                  <label for="referrerName" style="padding-left: 24px;">If so, what is their email?:</label>
+                  <input type="text" name="referrerName" id="referrerName" placeholder="Referrer's Email" disabled>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="notReferred" checked>
+                  <label class="form-check-label" for="notReferred">
+                    No
+                  </label>
+                </div>
+                
+              </div>
+            </div>
+          </div> <!--end activities / referredByrow-->
+          <hr>
+          <div class="row text-center">
+            <button class="btn btn-success btn-lg" type="button" id="btn-new" onclick="validateNewCustomerInputs()">
+              <!-- onclick="handleCreateNewCustOnClick()" -->
+              <i class="fas fa-sign-in-alt"></i>Create Account</button>
+          </div>
+          <!--UPDATE THE FORM ABOVE THIS LINE-->
+        </form>
+      <!-- </hr> -->
+    </div> <!--end modal content div-->
+  </div> <!--end new customer form div-->
+
+ 
+       
+
+<!--div for TRAINER LOGIN modal-->
+<div class="modal" id="trainerLoginModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <span class="close" onclick="closeTrainerLoginModal()">&times;</span>
+      <h1 class="wow fadeInUp">Trainer Login</h1>
+    <!--login form-->
+      <hr>
+        <form class="login-form" id="logreg-forms" onsubmit="return false">
+          <h2 class="login-heading">Login</h2>
+          <label for="trainerEmail">Email Address:</label>
+          <input type="email" id="trainerEmail" class="form-control" placeholder="Email address" required autofocus="">
+          <label for="trainerPassword">Password:</label>
+          <input type="password" id="trainerPassword" class="form-control" placeholder="Password" required>
+          <div class="text-center" id="trainerSignInErrorMsg"></div>
+          <button class="btn btn-success btn-block" type="submit" id="btn-signin" onclick="handleTrainerSignIn()">
+          <i class="fas fa-sign-in-alt"></i> Sign in</button>
+          <hr>
+          <p style="font-style: italic">New to training with us?</p>
+          <button class="btn btn-primary btn-lg" type="button" id="btn-new" onclick="handleNewTrainer()"><i class="fas fa-user-plus"></i> Sign up</button>
+        </form>
+      </hr>
+    </div> <!--end modal content div-->
+  </div>
+</div> <!--end trainer login modal div-->
+
+<!--div for NEW TRAINER modal-->
+<div class="modal" id="newTrainerModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeNewTrainerModal()">&times;</span>
+    <h1 class="wow fadeInUp">New Trainer</h1>
+  <!--Begin New TrainerForm-->
+    <hr>
+      <form id="new-trainer-form"> <!--id="logreg-forms" will change styling-->
+        <h2 class="login-heading">Welcome!</h2>
+        <div id="newUserLoginInfo" class=" row new-user-form-inputs form-group"> <!--Email and Password-->
+          <h4 style="font-style: italic">Your email address and password will be used to log in in the future.</h4>
+          <div class="col-sm-6"> <!--UPDATE COL CLASSES LATER-->
+            <label for="trainerEmail">Email Address</label>
+            <input type="email" id="newTrainerEmail" class="form-control" placeholder="Enter email address" required autofocus="">
+          </div>
+          <div class="col-sm-6">
+            <label for="trainerPassword">Password</label>
+            <input type="password" id="newTrainerPassword" class="form-control" placeholder="Password" required>
+          </div>
+        </div> <!--end row-->
+        <hr>
+        <div class="row new-user-form-inputs form-group"> <!--for First and Last Name-->
+          <div class="col-sm-6"> <!--UPDATE COL CLASSES LATER -->
+            <label for="trainerFName">First Name</label>
+            <input type="text" id="trainerFName" class="form-control form-floating" placeholder="First Name" required>
+          </div>
+          <div class="col-sm-6"> 
+            <label for="trainerLName">Last Name</label>
+            <input type="text" id="trainerLName" class="form-control form-floating" placeholder="Last Name" required>
+          </div>
+        </div> <!--end row-->
+        <div class="row new-user-form-inputs form-group"> <!--for DOB and Gender-->
+          <div class="col-sm-6"> <!--Date of Birth-->
+            <label for="trainerBirthDate">Date of Birth</label>
+            <input type="date" id="trainerBirthDate" class="form-control form-floating" placeholder="Date of Birth (MM/DD/YYYY)" required>
+          </div>
+          <div class="col-sm-6"> <!--Gender-->
+            <!--UPDATE GENDER TO A DROPDOWN MENU-->
+            <label for="trainerGender" style="display: block;">Gender: How do you identify?</label>
+            <select name="trainerGender" id="trainerGender" required>
+              <option value="male">Man</option>
+              <option value="female">Woman</option>
+              <option value="trans">Transgender</option>
+              <option value="nonbi">Non-binary / Non-conforming</option>
+              <option value="norsp">I'd rather not say</option>
+            </select>
+          </div> 
+        </div> <!--end row-->
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="newTrainerPhone">Phone Number</label>
+              <input type="tel" name="newTrainerPhone" id="newTrainerPhone" class="form-control form-floating" placeholder="numbers only (example: 1234567890)">
+          </div>
+          <!--may have to put extra col here-->
+        </div>
+        <div class="row"> 
+          <div id="trainingActivities" style="padding: 10px 0px 10px 0px">
+            <h3>What activites do you prefer to train clients in?</h3>
+            <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
+            <div class="row form-check"> <!--Cardio-->
+              <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" value="4" id="trnCardio" onclick="toggleActivitySelected(id)">
+                <label class="form-check-label" for="trnCardio">Cardio</label>
+              </div>
+              <div class="col-sm-6">
+                <label for="cardioPrice">Price:</label>
+                <input type="number" id="trnCardioPrice" disabled>
+              </div>
+            </div>
+            <div class="row form-check"> <!--Strength Training-->
+              <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" value="14" id="trnStrengthTraining" onclick="toggleActivitySelected(id)">
+                <label class="form-check-label" for="trnStrengthTraining">Strength Training</label>
+              </div>
+              <div class="col-sm-6">
+                <label for="strengthTrainingPrice">Price:</label>
+                <input type="number" id="trnStrengthTrainingPrice" disabled>
+              </div>
+            </div>
+            <div class="row form-check"> <!--Kickboxing-->
+              <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" value="24" id="trnKickboxing" onclick="toggleActivitySelected(id)">
+                <label class="form-check-label" for="trnKickboxing">Kickboxing</label>
+              </div>
+              <div class="col-sm-6">
+                <label for="kickboxingPrice">Price:</label>
+                <input type="number" id="trnKickboxingPrice" disabled>
+              </div>
+            </div>
+            <div class="row form-check"> <!--Yoga-->
+              <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" value="34" id="trnYoga" onclick="toggleActivitySelected(id)">
+                <label class="form-check-label" for="trnYoga">Yoga</label>
+              </div>
+              <div class="col-sm-6">
+                <label for="yogaPrice">Price:</label>
+                <input type="number" id="trnYogaPrice" disabled>
+              </div>
+            </div>
+          </div> <!--end training activities checklist-->
+        </div> <!--end row-->
+        <hr>
+        <div class="row text-center">
+          <button class="btn btn-success btn-lg" type="button" onclick="validateNewTrainerInputs()">
+            <i class="fas fa-sign-in-alt"></i>Create Account</button>
+        </div>
+      </form>
+  </div> <!--end modal content div-->
+</div> <!--end new trainer form div-->
+
+
+
+
+
+
+
+
+
+
+    <!--MAY PUT A QUICK FAQ SECTION HERE-->
+       <!-- Bold call to action Section -->
+      <!-- <div class="feature-sub">
+        <div class="container">
+          <div class="sub-inner">
+            <h1 class="wow fadeInUp">If it’s not personal, It’s not possible! See The Results and Feel the difference immediatly.</h1>
+            <a href="#" class="btn btn-action wow fadeInUp">Get Started</a> </div>
+        </div>
+      </div> -->
+
+      
+      <!-- Footer Section -->
+      <div class="footer" id="contact">
+        <div class="container">
+          <div class="col-md-6 contact">
+            <h1>About Trainer</h1>
+            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, <br>
+              vel illum dolore eu feugiat nulla facilisis at vero Duis autem vel eum iriure dolor in <br>
+              hendrerit in vulputate velit esse eros et accumsan.</p>
+            <p>Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl,<br>
+              molestie sed egestas bibendum, varius eu diam.</p>
+          </div>
+          <div class="col-md-3 contact footer-menu">
+            <h1>Social</h1>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Github</a></li>
+              <li><a href="#">Pinterest</a></li>
+              <li><a href="#">Google Plus</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 contact">
+            <h1>Contact Us</h1>
+            <p> Contact our 24/7 customer support if you have any questions. We'll help you out. </p>
+            <a href="mailto:support@gmail.com">contact@iland.com</a> </div>
+        </div>
+      </div>
+    <!-- </div> -->
+    
+    <!-- Scroll To Top --> 
+    
+    <a id="back-top" class="back-to-top page-scroll" href="#main"> <i class="ion-ios-arrow-thin-up"></i> </a> 
+    
+    <!-- Scroll To Top Ends--> 
+    
+  </div>
+  <!-- Main Section -->
+  </div>
+  <!-- Wrapper--> 
+
+
+<!--scripts-->
+  <script src="https://code.jquery.com/jquery-latest.js"></script> <!--latest jquery-->
+  <script type="text/Javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!--latest boostrap JS-->
+  <!--scripts from the template-->
+  <script type="text/javascript" src="./resources/scripts/plugins.js"></script> 
+  <script type="text/javascript" src="./resources/scripts/menu.js"></script> 
+  <script type="text/javascript" src="./resources/scripts/custom.js"></script> 
+  <script src="./resources/scripts/jquery.subscribe.js"></script>
+  <!--scripts above this line came from the template-->
+  <script type="text/Javascript" src="./resources/scripts/login.js"></script> <!--custom JS for this page -->
+</body>
+</html>

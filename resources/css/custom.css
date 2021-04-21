@@ -1,0 +1,346 @@
+/* for my custom CSS */
+
+/* for the Login page */
+.hero-section-2 {
+	background:url(../images/reflection.jpg);
+	background-size: cover;
+	padding: 150px 0 0 0;
+}
+
+.buttons {
+    padding: 20%;
+}
+
+.btn-cust-trainer{
+    font-size: 34px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    padding: 0 25px 0 25px;
+	border-color: #222225;
+    background-color: #222225;
+    color: #FFFFFF;
+	box-shadow: 0 0 1px transparent;
+    outline: none;
+    border: 2px solid;
+}
+
+
+/* end Login page custom CSS */
+
+/*--main body of every page except for index.html--*/
+#main-body{
+    height: 100%;
+}
+
+/*--customer login modal styling--*/
+/* modal background */
+/* #custLoginModal, #trainerLoginModal, #custConfirmApptModal{ */
+.modal{
+    display: none;/* hidden by default */
+    position: fixed;/* stay in place */
+    z-index: 1; /* sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /*enable scroll if needed*/
+    background-color: rgb(0,0,0); /*fallback color*/
+    background-color: rgba(0,0,0,0.4); /*black with opacity*/
+}
+
+.modal-sm {
+    min-width: 60vh; /*set mininum width so this modal isn't too small*/
+}
+
+.modal-header {
+    font-size: 24px;
+    font-style: bold;
+    padding: 10px;
+}
+.modal-content .row {
+    align-content: center;
+}
+.modal-content .col-md-4 {
+    text-align: right;
+    font-size: 18px;
+    padding: 10px;
+}
+.modal-content .col-md-8 {
+    text-align: left;
+    font-size: 18px;
+    font-style: bold;
+    padding: 10px;
+}
+
+/* modal content/box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* close button */
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* DASHBOARD STYLING */
+.dashboard-btn{
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.dashboard-header{
+    background:url(../images/dumbbell-darker.jpeg);
+    background-blend-mode: darken;
+	background-size: cover;
+	padding: 150px 0 150px 0;
+}
+
+.dashboard-subsection {
+	padding: 200px 0 200px 0; /*may make it 100px top and bottom later*/
+	background: #f2f3f7;
+    border-top: 2px;
+    border-bottom: 2px;
+}
+
+
+
+
+
+/*--CUSTOM LOGIN / NEW ACCOUNT FORM STYLING--*/
+.login-heading{
+    text-align: center;
+    padding: 20px;
+    /* margin: 20%; */
+    font-style: bold;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.new-user-form-inputs {
+    line-height: 24px;
+}
+
+/* #custGender, custBirthDate {
+    padding-top: 10px;
+    padding-bottom: 2px;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+} */
+
+#trainerGender, #trainerBirthDate, #custGender, #custBirthDate #gender, 
+#editCustProfile #birthDate, #newCustPhone, #newCustBirthDate,#updateCustPhone,
+#newTrainerPhone, #updateTrainerPhone {
+    padding-top: 10px;
+    padding-bottom: 2px;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    line-height: 24px;
+    height: 45px;
+    border: 1px solid #DDDDDD;
+}
+
+.row label {
+    padding-top: 10px;
+    padding-bottom: 2px;
+}
+
+#custSignInErrorMsg, #trainerSignInErrorMsg {
+    display: none;
+}
+
+#custSignInErrorMsg p, #trainerSignInErrorMsg p {
+    color: red;
+    font-style: italic;
+}
+/*--login/new account form styling, copied and modified from https://bootsnipp.com/snippets/GavAo*/
+
+
+#logreg-forms{
+    width: auto;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    font-family: 'Roboto', sans-serif;
+}
+
+#logreg-forms form {
+    width: 100%;
+    max-width: 410px;
+    padding: 15px;
+    margin: auto;
+}
+
+#logreg-forms label {
+    font-size:18px;
+    font-family: 'Roboto', sans-serif;
+}
+#logreg-forms input {
+    margin-bottom: 20px;
+}
+
+#btn-signin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 0px;
+    font-size: 24px;
+}
+
+#btn-new {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    width: auto;
+}
+
+#birthDate {
+    height: 48px;
+}
+
+.form-check {
+    padding-top: 5px;
+}
+
+#logreg-forms .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+#logreg-forms .form-control:focus { 
+    z-index: 2; 
+
+}
+#logreg-forms a{
+    display: block;
+    padding-top:10px;
+    color:lightseagreen;
+}
+
+#logreg-form .lines{
+    width:200px;
+    border:1px solid red;
+}
+#logreg-forms .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#logreg-forms .form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+#logreg-forms button[type="submit"]{ 
+    margin-top:10px; 
+}
+#logreg-forms .form-reset, #logreg-forms .form-signup{ 
+    display: none; 
+}
+.form-signup{
+    width:210px !important;
+    margin: 0 auto;
+}
+
+/* OTHER CUSTOMER.HTML STYLING */
+
+button.list-group-item {
+    text-align: center;
+    align-content: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+
+#custMakeApptModal .modal-content {
+    width: 100%;
+    height: 100%;
+}
+
+#availApptList {
+    padding: 20px 0;
+}
+
+#custMakeApptModal h4 {
+    font-size: 24px;
+    line-height: 120%;
+}
+
+#custMakeApptModal h1 {
+    padding-bottom: 20px;
+}
+
+#apptDetails {
+    padding: 20px;
+}
+
+#custMakeApptModal form {
+    text-align: left;
+}
+
+#trainerEditAvailabilityModal .modal-content{
+    width: 100%;
+    height: 100%;
+    
+}
+
+#insufficientCashMessage {
+    color: red;
+    font-style: italic;
+    padding-left: 24px;
+}
+
+#mustEnterCurrPasswordMsg {
+    color: red;
+    font-style: italic;
+    padding-left: 24px;
+}
+
+#trainerEditAvailabilityModal {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.modal-lg {
+    width: 100%;
+}
+
+/* #editAvailTable .btn-secondary, .btn-danger, input[type="time"], input[type="text"], select {
+    line-height: 36px;
+} */
+#editAvailTable td {
+    line-height: 36px;
+    max-width:fit-content;
+}
+
+#creditCardForm select {
+    border-radius: 4px;
+    vertical-align: middle;
+    border: 1px solid #DDDDDD;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+}
+
+#expiration-date label {
+    display: block;
+}
+
+#expiration-date select {
+    height:45px;
+}
+

@@ -1,0 +1,289 @@
+<!--for TRAINER dashboard and related modals-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trainer Dashboard</title>
+  <link rel="icon" href="./resources/images/tlac-icon.png" type="image/png" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--UPDATE THESE 2 META TAGS-->
+  <meta name="description" content="trainer dashboard">
+  <meta name="keywords" content="personal training, training, trainer, gym, exercise, workout, train like a champion">
+  <!--CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all"> <!--Bootstrap 3.3.7 CSS-->
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900"> <!--Google font: Roboto-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/> <!--for FA icons-->
+  <link rel="stylesheet" href="./resources/css/animate.css">
+  <link rel="stylesheet" href="./resources/css/owl.carousel.css">
+  <link rel="stylesheet" href="./resources/css/owl.theme.css">
+  <link rel="stylesheet" href="./resources/css/ionicons.min.css">
+  <link rel="stylesheet" href="./resources/css/style.css"  type="text/css" media="all"/>
+  <link rel="stylesheet" href="resources/css/custom.css">
+  <link rel="stylesheet" href="resources/css/calendar.css"> <!--custom CSS for clickable calendar display-->
+</head>
+
+<body onload="handleTrainerDashboardOnLoad()">
+<!--scripts-->
+<script src="https://code.jquery.com/jquery-latest.js"></script> <!--latest jquery-->
+<script type="text/Javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!--latest boostrap JS-->
+<script type="text/Javascript" src="./resources/scripts/login.js"></script> <!--custom JS for this page -->
+
+<div class="wrapper">
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand page-scroll" href="./index.html"><img class="img-fluid" src="./resources/images/tlac-white-logo-150.png" alt="logo" /></a> </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a class="page-scroll" href="./index.html">Home</a></li>
+            <li><a class="page-scroll" href="./index.html#faq">How It Works</a></li> <!--change this href-->
+            <li><a class="page-scroll" href="./index.html#services">Services</a></li> <!--change this href name-->
+            <li><a class="page-scroll" id="navbarTainerDashboard" href="#" onclick="document.location.href=getDashboardHref()">My Dashboard</a></li> 
+        </div>
+      </div>
+    </nav> <!-- /.navbar-collapse --> 
+  </div> <!-- /.container-fluid -->
+
+<!--begin customer dashboard page-->
+    <div class="main app form" id="main">
+        <div class="dashboard-header"> 
+          <div class="container nopadding">
+            <div class="col-md-12">
+              <div class="hero-content text-center">
+                <h1 class="wow fadeInUp" data-wow-delay="0.1s">Trainer Dashboard</h1>
+                <div class="col-md-4 dashboard-btn">
+                    <a href="#viewTrainerAppointments" class="btn btn-action btn-lg wow fadeInUp page-scroll">View My Appointments</a>
+                  </div>
+                  <div class="col-md-4 dashboard-btn">
+                      <a href="#editTrainerAvailability" class="btn btn-action btn-lg wow fadeInUp page-scroll">Edit Availability</a>
+                  </div>
+                  <div class="col-md-4 dashboard-btn">
+                    <a href="#editTrainerProfile" class="btn btn-action btn-lg wow fadeInUp page-scroll">Edit My Profile</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- VIEW TRAINER APPOINTMENTS SECTION -->
+        <div class="dashboard-subsection text-center" id="viewTrainerAppointments">
+          <div class="container">
+            <h1 style="font-size: 48px; font-style: bold;">My Appointments</h1>
+            <br>
+            <p style="font-size: 18px;">Here is the list of your confirmed appointments. Click on an appointment to see details and make changes.</p>
+            <br>
+            <div class="list-group appointment-list text-center" id="trainerApptList">
+              <!--list of confirmed appointments populate here form trainer.js-->
+            </div>
+          </div>
+        </div>
+        <!--TRAINER EDIT APPOINTMENT MODAL-->
+        <div class="modal" id="editTrainerApptModal"></div>
+
+        <!--EDIT TRAINER AVAILABILITY-->
+        <div class="dashboard-subsection text-center" id="editTrainerAvailability">
+          <div class="container">
+            <div class="text-center">
+              <h1 style="font-size: 48px; font-style: bold;">Edit Availability</h1> 
+            </div>
+            <div class="calendar-header row"> <!--for previous and next buttons, plus current month display-->
+              <div class="previous-month col-sm-4" data-move="decrement" data-storage="month"> <!--previous month button-->
+                <button onclick="previousMonth()"><i class="fa fa-chevron-circle-left btn-prev-month" aria-hidden="true"></i></button>
+              </div>
+              <div class="month-indicator col-sm-4">
+                <p id="currMonth"></p> <!--displays Month YYYY-->
+              </div>
+              <div class="next-month col-sm-4" data-move="increment" data-storage="month"> <!--next month button-->
+                <button onclick="nextMonth()"><i class="fa fa-chevron-circle-right btn-next-month" aria-hidden="true"></i></button>
+              </div>
+              <div id="calendar"></div> <!--actual calendar w/ buttons populates here from trainer.js-->
+            </div>
+          </div>
+        </div> <!--end container div for calendar)-->
+             <!--Calendar display of customer's appiontments will go here-->
+        
+        <!--BEGIN MODAL FOR ADDING TRAINER AVAILABILITY-->
+        <div class="modal">
+          <div class="modal-dialog">
+            <div class="modal-content" id="trainerEditAvailabilityModal">
+              <!--span for close, table with existing appts & fields to add more go here-->
+              
+            </div>
+          </div>
+        </div>
+        <!--end add trainer availability modal-->
+
+        <!--EDIT TRAINER PROFILE SECTION-->
+        <div class="dashboard-subsection" id="editTrainerProfile">
+          <div class="container">
+            <div class="text-center">
+              <h1 style="font-size: 48px; font-style: bold;">Edit My Profile</h1> 
+            </div>
+           <!--might just have button at the top pop up a modal with the customer's info in a form. When they click save, update any data that has changed.-->
+           <hr>
+           <div class="container">
+              <form id="trainerProfileForm">
+                <div class="row"> <!--Email-->
+                  <div class="col-sm-6"> <!--current email-->
+                    <label for="currEmail">Current Email Address</label>
+                    <input type="email" id="currEmail" class="form-control" disabled>
+                  </div>
+                  <div class="col-sm-6"> <!--new email-->
+                    <label for="newEmail">New Email Address</label>
+                    <input type="email" id="newEmail" class="form-control" placeholder="New Email">
+                  </div>
+                </div> <!--end row-->
+                <div class="row"> <!--Password-->
+                  <h4 style="font-style: italic; padding-top: 10px;">To make any changes to your profile, please enter your current password:</h4>
+                  <div class="col-sm-6">
+                    <label for="currPassword">Current Password</label>
+                    <input type="password" id="currPassword" placeholder="Enter Current Password" class="form-control" required="">
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" class="form-control" placeholder="Enter New Password">
+                  </div>
+                </div>
+                <div class="row"> <!--with the rest, maybe just check if they're different than what's in the database?-->
+                  <div class="col-sm-6"> <!--first name-->
+                    <label for="inputFName">First Name</label>
+                    <input type="text" id="inputFName" class="form-control form-floating" placeholder="First Name" required="">
+                  </div>
+                  <div class="col-sm-6"> <!--last name-->
+                    <label for="inputLName">Last Name</label>
+                    <input type="text" id="inputLName" class="form-control form-floating" placeholder="Last Name" required="">
+                  </div>
+                </div> <!--end row-->
+                <div class="row">
+                  <div class="col-sm-6"> <!--DOB-->
+                    <label for="birthDate">Date of Birth</label>
+                    <input type="date" id="birthDate" class="form-control form-floating" placeholder="Date of Birth (MM/DD/YYYY)" required="">
+                  </div>
+                  <div class="col-sm-6"> <!--Gender-->
+                    <label for="trainerGender">Gender: How do you identify?</label>
+                      <select style="padding-top: 10px; padding-bottom: 2px; width: 100%;" name="trainerGender" id="trainerGender" required>
+                        <option value="male">Man</option>
+                        <option value="female">Woman</option>
+                        <option value="trans">Transgender</option>
+                        <option value="nonbi">Non-binary / Non-conforming</option>
+                        <option value="norsp">I'd rather not say</option>
+                      </select>
+                  </div>
+                </div> <!--end row-->
+                <div class="row text-left"> 
+                  <div class="col-sm-6"> <!--preferred activities-->
+                    <div id="preferredActivities" style="padding: 10px 0px 10px 0px">
+                      <h3>What activites do you prefer to train clients in?</h3>
+                      <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
+                      <div class="row form-check"> <!--Cardio-->
+                        <div class="col-md-6">
+                          <input class="form-check-input" type="checkbox" value="4" id="cardioSelect">
+                          <label class="form-check-label" for="cardioSelect">Cardio</label>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="cardioPrice">Price:</label>
+                          <input type="number" id="cardioPrice">  
+                        </div>
+                      </div><!--end row-->
+                      <div class="row form-check"> <!--Strength Training-->
+                        <div class="col-md-6">
+                          <input class="form-check-input" type="checkbox" value="14" id="stSelect">
+                          <label class="form-check-label" for="stSelect">Strength Training</label>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="strengthTrainingPrice">Price:</label>
+                          <input type="number" id="strengthTrainingPrice">    
+                        </div>
+                      </div> <!--end row -->
+                      <div class="row form-check"> <!--kickboxing-->
+                        <div class="col-md-6">
+                          <input class="form-check-input" type="checkbox" value="24" id="kbSelect">
+                          <label class="form-check-label" for="kbSelect">Kickboxing</label>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="kickboxingPrice">Price:</label>
+                          <input type="number" id="kickboxingPrice">
+                        </div>
+                      </div> <!--end row-->
+                      <div class="row form-check"> <!--Yoga-->
+                        <div class="col-md-6">
+                          <input class="form-check-input" type="checkbox" value="34" id="yogaSelect">
+                          <label class="form-check-label" for="yogaSelect">Yoga</label>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="yogaPrice">Price:</label>
+                          <input type="number" id="yogaPrice">
+                        </div>
+                      </div><!--end row-->
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="updateTrainerPhone">Phone Number</label>
+              <input type="tel" name="updateTrainerPhone" id="updateTrainerPhone" class="form-control form-floating" placeholder="numbers only (example: 1234567890)">
+                  </div>
+                </div>
+              </div> <!--end row-->
+              <div class="row text-center" id="custEditProfileErrorMsg"><small class="text-muted" id="mustEnterCurrPasswordMsg" style="padding-top: 10px; display: none;">You must enter your current password to make changes.</small>
+                <small class="text-muted" id="incorrectPasswordMsg" style="padding-top: 10px; display: none;">Current Password is incorrect.</small></div>
+                <div class="row text-center"> <!--save changes button-->
+                  <button class="btn btn-lg btn-success" type="button" id="btnEditProfile" onclick="trainerEditProfile()">Submit Profile Changes</button>
+                </div>
+              </form> <!--end customer profile form-->
+           </div> <!--end custProfileForm container-->
+        </div>
+
+
+        <!-- Footer Section -->
+        <div class="footer" id="contact">
+          <div class="container">
+            <div class="col-md-6 contact">
+              <h1>About Train Like A Champion</h1>
+              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, <br>
+                vel illum dolore eu feugiat nulla facilisis at vero Duis autem vel eum iriure dolor in <br>
+                hendrerit in vulputate velit esse eros et accumsan.</p>
+              <p>Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl,<br>
+                molestie sed egestas bibendum, varius eu diam.</p>
+            </div>
+            <div class="col-md-3 contact footer-menu">
+              <h1>Social</h1>
+              <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Github</a></li>
+                <li><a href="#">Pinterest</a></li>
+                <li><a href="#">Google Plus</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 contact">
+              <h1>Contact Us</h1>
+              <p> Contact our 24/7 customer support if you have any questions. We'll help you out. </p>
+              <a href="mailto:support@gmail.com">contact@iland.com</a> </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll To Top --> 
+      
+      <a id="back-top" class="back-to-top page-scroll" href="#main"> <i class="ion-ios-arrow-thin-up"></i> </a> 
+      
+      <!-- Scroll To Top Ends--> 
+      
+    </div>
+    <!-- Main Section -->
+    </div>
+    <!-- Wrapper--> 
+    
+    <!-- Jquery and Js Plugins --> 
+    <script src="https://code.jquery.com/jquery-latest.js"></script> <!--latest jquery-->
+    <script type="text/Javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!--Bootstrap 3.3.7 js-->
+    <script type="text/javascript" src="./resources/scripts/trainer.js"></script> <!--custom trainer js-->
+    <script type="text/javascript" src="./resources/scripts/plugins.js"></script> 
+    <script type="text/javascript" src="./resources/scripts/menu.js"></script> 
+    <script type="text/javascript" src="./resources/scripts/custom.js"></script> 
+    <script src="./resources/scripts/jquery.subscribe.js"></script>
+    </body>
+</html>
+        
