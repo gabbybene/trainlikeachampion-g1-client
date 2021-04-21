@@ -1,5 +1,12 @@
 /* for my custom CSS */
 
+/* FAQ styling */
+.media-body{
+    color: white !important;
+    text-align: left;
+}
+
+
 /* for the Login page */
 .hero-section-2 {
 	background:url(../images/reflection.jpg);
@@ -11,19 +18,27 @@
     padding: 20%;
 }
 
-.btn-cust-trainer{
-    font-size: 34px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    padding: 0 25px 0 25px;
-	border-color: #222225;
-    background-color: #222225;
-    color: #FFFFFF;
-	box-shadow: 0 0 1px transparent;
-    outline: none;
-    border: 2px solid;
+/*--custom styling for small screens for modals--*/
+/* @media all and (max-width: 768px){
+	.signup-form{
+		max-width: 80vh;
+		margin: 0 auto;
+	}
+	.modal-content{
+		max-width: 80vh;
+		margin: 0 auto;
+	}
+} */
+
+.btn-cust-trainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+#faq-btn-cust, #faq-btn-trn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 /* end Login page custom CSS */
 

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./resources/css/style.css"  type="text/css" media="all"/>
 </head>
 
-<body>
+<body onload="handleOnLoad()">
 <!--scripts-->
 <script src="https://code.jquery.com/jquery-latest.js"></script> <!--latest jquery-->
 <script type="text/Javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!--latest boostrap JS-->
@@ -63,303 +63,132 @@
     <div class="pitch text-center" id="faq">
       <div class="container">
         <div class="pitch-intro">
-          <h1 class="wow fadeInDown" data-wow-delay="0.2s">EVERYTHING IS POSSIBLE WITH ME</h1>
-          <p class="wow fadeInDown" data-wow-delay="0.2s">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.</p>
+          <h1 class="wow fadeInDown" data-wow-delay="0.2s">HOW IT WORKS</h1>
+          <h5 class="wow fadeInDown" data-wow-delay="0.2s">Ready to Train Like A Champion, but not sure where to start?</h5>
+          <p class="wow fadeInDown" data-wow-delay="0.2s">  Whether you're looking to train clients, or you're a customer looking to take your training to the next level, take a look at some frequently asked questions below to see how our personal training services work.</p>
         </div>
         <div class="col-md-12">
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s"> <!--Customer FAQ button-->
+            <div class="text-center">
+              <a id="faq-btn-cust" class="btn btn-action wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;" onclick="showCustomerFAQ()">Customer FAQ</a>
+            </div>
+          </div>
+
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s"> <!--Trainer FAQ Button-->
+            <div class="text-center">
+              <a id="faq-btn-trainer" class="btn btn-action wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;" onclick="showTrainerFAQ()">Trainer FAQ</a>
+            </div>
+          </div>
+        </div> <!--end button section-->
+
+        <div class="col-md-12 wow fadeInDown" data-wow-delay="0.2s" id="customerFAQ" style="padding-top: 30px;">
+          <!--show this div on showCustomerFAQ()-->
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
             <div class="pitch-icon"> <i class="ion-ios-checkmark-outline"></i> </div>
             <div class="pitch-content">
-              <h1>Personal Training</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
+              <h1>What activities are available?</h1>
+              <p> We currently offer training sessions in cardio(e.g. running, indoor cycling, etc.), strength training, kickboxing, and yoga. We plan on adding more activities soon, so stay tuned! </p>
             </div>
           </div>
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
+            <div class="pitch-icon"> <i class="ion-ios-checkmark-outline"></i> </div>
+            <div class="pitch-content">
+              <h1>How do I schedule appointments?</h1>                
+              <p> From your Customer Dashboard, scroll down to the "Search For Appointments" section.  Any calendar dates that are blue have available appointments.  
+                  Click on a date in order to see what appointments are available on that day.  If you're interested in reserving one, click on the session to see details and pay. 
+                Once you've paid, your appointment is confirmed and will appear in your Dashboard under the "View My Appointments" section.</p>
+            </div>
+          </div>
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
+            <div class="pitch-icon"> <i class="ion-ios-checkmark-outline"></i> </div>
+            <div class="pitch-content">
+              <h1>How much do sessions cost?</h1>
+              <p> The price of sessions vary by the trainer and activity because we allow trainers to control the price of their sessions. 
+                  The price of an individual session can be see once you click on a date and see available appointments.</p>
+            </div>
+          </div>
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
+            <div class="pitch-icon"> <i class="ion-ios-checkmark-outline"></i> </div>
+            <div class="pitch-content">
+              <h1>Why do you ask for the email address of the friend who referred me to TLAC?</h1>
+              <p> If you refer a friend to TLAC, you may receive a special thank-you gift from us, so make sure to get the word out about how much you love to Train Like A Champion! </p>
+            </div>
+          </div>
+        </div> <!--end customer faq-->
+
+        <div class="col-md-12 wow fadeInDown" data-wow-delay="0.2s" id="trainerFAQ" style="padding-top: 30px;">
+          <!--show this div on showTrainerFAQ()-->
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
+            <div class="pitch-icon"> <i class="ion-ios-checkmark-outline"></i> </div>
+            <div class="pitch-content">
+              <h1>What activities can I train clients in?</h1>
+              <p> We currently offer trainers to work with clients in cardio(e.g. running, indoor cycling, etc.), strength training, kickboxing, and yoga. </p>
+            </div>
+          </div>
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
             <div class="pitch-icon"> <i class="ion-ios-mic-outline"></i> </div>
             <div class="pitch-content">
-              <h1>Cardio Training</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
+              <h1>How much can I charge for sessions?</h1>
+              <p> At Train Like A Champion, you are able to set your own prices for sessions of each activity type. We do require minimum or maximum prices; TLAC will take a fee of $15 or 20% of the cost of each session, whichever is greater.</p>
             </div>
           </div>
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
             <div class="pitch-icon"> <i class="ion-ios-folder-outline"></i> </div>
             <div class="pitch-content">
-              <h1>Freestyle Training</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
+              <h1>How do I post the times I am able to train clients?</h1>
+              <p> In the Trainer Dashboard, you can update your availability in the "Edit Availability" section.  To start, click on a date on the calendar.
+                  Any existing available appointments (those for which customers have not signed up) will appear.  From there, you can either edit the existing times by clicking the "edit" button,
+                changing the information, and clicking "save", or you can create new sessions by entering information on an empty row and clicking "save."</p>
+              <p>Need to add additional times? You can click "add row" to add additional empty rows in which you can save new appointment information.</p>
             </div>
           </div>
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
+          <div class="col-md-6 wow fadeInDown" data-wow-delay="0.2s">
             <div class="pitch-icon"> <i class="ion-ios-folder-outline"></i> </div>
             <div class="pitch-content">
-              <h1>Sport Nutrition</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
+              <h1>Why should I train clients at Train Like A Champion?</h1>
+              <p> At Train Like A Champion, </p>
             </div>
           </div>
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
-            <div class="pitch-icon"> <i class="ion-ios-folder-outline"></i> </div>
-            <div class="pitch-content">
-              <h1>Functional Training</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
-            </div>
-          </div>
-          <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
-            <div class="pitch-icon"> <i class="ion-ios-folder-outline"></i> </div>
-            <div class="pitch-content">
-              <h1>Crossfit</h1>
-              <p> Aliquam vel euismod elit, sed suscipit est. Sed tincidunt venenatis ligula ac luctus. Fusce egestas volutpat mi sed pellentesque. </p>
-            </div>
-          </div>
-        </div>
+        </div> <!--end trainer FAQ-->
       </div>
-    </div>
-    <!-- Features Section -->
-    <!-- <div class="app-features text-center" id="services">
-      <div class="container">
-        <h1 class="wow fadeInDown" data-wow-delay="0.1s">My promise to you</h1>
-        <p class="wow fadeInDown" data-wow-delay="0.2s"> Aliquam sagittis ligula et sem lacinia, ut facilisis enim sollicitudin. Proin nisi est,<br class="hidden-xs">
-          convallis nec purus vitae, iaculis posuere sapien. </p>
-        <div class="col-md-4 features-left text-right">
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.2s">
-            <div class="icon"> <i class="ion-ios-list-outline"></i> </div>
-            <div class="feature-single">
-              <p>Will create a plan that’s tailored to your situation and create your everyday nutrition strategies.</p>
-            </div>
-          </div>
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.3s">
-            <div class="icon"> <i class="ion-ios-speedometer-outline"></i> </div>
-            <div class="feature-single">
-              <p>Bring to the table win-win survival strategies to ensure proactive domination.</p>
-            </div>
-          </div>
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.4s">
-            <div class="icon"> <i class="ion-ios-pulse"></i> </div>
-            <div class="feature-single">
-              <p>Will create a plan that’s tailored to your situation and create your everyday nutrition strategies.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 wow fadeInDown" data-wow-delay="0.5s"> <img class="img-responsive" src="./resources/images/iPhone-app.png" alt="App" /> </div>
-        <div class="col-md-4 features-left text-left">
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.6s">
-            <div class="icon"> <i class="ion-ios-americanfootball-outline"></i> </div>
-            <div class="feature-single">
-              <p> Bring to the table win-win survival strategies to ensure proactive domination.</p>
-            </div>
-          </div>
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.7s">
-            <div class="icon"> <i class="ion-ios-heart-outline"></i> </div>
-            <div class="feature-single">
-              <p>Bring to the table win-win survival strategies to ensure proactive domination.</p>
-            </div>
-          </div>
-          <div class="col-md-12 wow fadeInDown" data-wow-delay="0.8s">
-            <div class="icon"> <i class="ion-ios-analytics-outline"></i> </div>
-            <div class="feature-single">
-              <p>Will create a plan that’s tailored to your situation and create your everyday nutrition strategies.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- Split Feature1 Section -->
-    <!-- <div class="split-features">
-      <div class="col-md-6 nopadding">
-        <div class="split-image"> <img class="img-responsive wow fadeIn" src="./resources/images/app_image.png" alt="Image" /> </div>
-      </div>
-      <div class="col-md-6 nopadding">
-        <div class="split-content">
-          <h1 class="wow fadeInUp">Keep your body fit & strong to <br>
-            live longer</h1>
-          <p class="wow fadeInUp"> Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl, molestie sed egestas bibendum, varius eu diam. Suspendisse est metus, ultrices sit amet dolor in, rhoncus malesuada mi.</p>
-          <ul class="wow fadeInUp">
-            <li>Nulla ornare purus non consequat ultricies.</li>
-            <li>Etiam est nisl, molestie sed egestas bibendum</li>
-            <li>Aliquam vel euismod elit, sed suscipit est.</li>
-            <li>Curabitur egestas justo neque viverra vel. </li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
-     <!-- Split Feature2 Section -->
-    <!-- <div class="split-features2">
-      <div class="col-md-6 nopadding">
-        <div class="split-content second">
-          <h1 class="wow fadeInUp">See The Results and Feel the difference</h1>
-          <p class="wow fadeInUp"> Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl, molestie sed egestas bibendum, varius eu diam. Suspendisse est metus, ultrices sit amet dolor in, rhoncus malesuada mi.</p>
-          <ul class="wow fadeInUp">
-            <li>Nulla ornare purus non consequat ultricies.</li>
-            <li>Etiam est nisl, molestie sed egestas bibendum</li>
-            <li>Aliquam vel euismod elit, sed suscipit est.</li>
-            <li>Curabitur egestas justo neque viverra vel. </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6 nopadding">
-        <div class="split-image"> <img class="img-responsive wow fadeIn" src="./resources/images/app_image2.png" alt="Image" /> </div>
-      </div>
-    </div> -->
-     <!-- Split Feature3 Section -->
-    <!-- <div class="split-features">
-      <div class="col-md-6 nopadding">
-        <div class="split-image"> <img class="img-responsive wow fadeIn" src="./resources/images/gym-3.jpg" alt="Image" /> </div>
-      </div>
-      <div class="col-md-6 nopadding">
-        <div class="split-content">
-          <h1 class="wow fadeInUp">Command Performance You<br>
-            deserve it</h1>
-          <p class="wow fadeInUp"> Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl, molestie sed egestas bibendum, varius eu diam. Suspendisse est metus, ultrices sit amet dolor in, rhoncus malesuada mi.</p>
-          <ul class="wow fadeInUp">
-            <li>Nulla ornare purus non consequat ultricies.</li>
-            <li>Etiam est nisl, molestie sed egestas bibendum</li>
-            <li>Aliquam vel euismod elit, sed suscipit est.</li>
-            <li>Curabitur egestas justo neque viverra vel. </li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
+    </div> 
+  </div>
+
+  
      <!-- Bold call to action Section -->
     <div class="feature-sub">
-      <div class="container">
+      <div class="container text-center">
         <div class="sub-inner">
-          <h1 class="wow fadeInUp">If it’s not personal, It’s not possible! See The Results and Feel the difference immediatly.</h1>
-          <a href="#" class="btn btn-action wow fadeInUp">Get Started</a> </div>
+          <h1 class="wow fadeInUp">We want to help you become the best version of yourself!</h1>
+          <h1 class="wow fadeInUp">Are you ready to Train Like A Champion?</h1>
+          <a href="./login.html" class="btn btn-action wow fadeInUp">Get Started</a> </div>
       </div>
     </div>
-     <!-- Client Section -->
-    <!-- <div class="review-section" id="review">
-      <div class="container">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="reviews owl-carousel owl-theme">
-            <div class="review-single"><img class="img-circle" src="./resources/images/customer1.png" alt="Client Testimonoal" />
-              <div class="review-text wow fadeInUp" data-wow-delay="0.2s">
-                <p>Morbi eget dictum enim. Praesent sed quam sit amet lorem tempor rhoncus. <br>
-                  In hac habitasse platea dictumst. Vivamus in accumsan ex</p>
-                <h3>Johnathan Doe</h3>
-                <h3>Marketing Head Matrix media</h3>
-              </div>
-            </div>
-            <div class="review-single"><img class="img-circle" src="./resources/images/customer2.png" alt="Client Testimonoal" />
-              <div class="review-text">
-                <p>Morbi eget dictum enim. Praesent sed quam sit amet lorem tempor rhoncus. <br>
-                  In hac habitasse platea dictumst. Vivamus in accumsan ex</p>
-                <h3>Oidila Matik</h3>
-                <h3>President Lexo Inc</h3>
-              </div>
-            </div>
-            <div class="review-single"><img class="img-circle" src="./resources/images/customer3.png" alt="Client Testimonoal" />
-              <div class="review-text">
-                <p>Morbi eget dictum enim. Praesent sed quam sit amet lorem tempor rhoncus. <br>
-                  In hac habitasse platea dictumst. Vivamus in accumsan ex</p>
-                <h3>- Alex Dattilo</h3>
-                <h3>CEO Optima Inc</h3>
-              </div>
-            </div>
-            <div class="review-single"><img class="img-circle" src="./resources/images/customer4.png" alt="Client Testimonoal" />
-              <div class="review-text">
-                <p>Morbi eget dictum enim. Praesent sed quam sit amet lorem tempor rhoncus. <br>
-                  In hac habitasse platea dictumst. Vivamus in accumsan ex</p>
-                <h3>- Robert Hammer</h3>
-                <h3>design head Omega Corp</h3>
-              </div>
-            </div>
-            <div class="review-single"><img class="img-circle" src="./resources/images/customer5.png" alt="Client Testimonoal" />
-              <div class="review-text">
-                <p>Morbi eget dictum enim. Praesent sed quam sit amet lorem tempor rhoncus. <br>
-                  In hac habitasse platea dictumst. Vivamus in accumsan ex</p>
-                <h3>- Rita Valentine</h3>
-                <h3>CEO Behena digital</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- Package Section -->
-    <!-- <div id="about" class="pricing-section text-center">
-      <div class="container">
-        <div class="col-md-12 col-sm-12 nopadding">
-          <div class="pricing-intro">
-            <h1 class="wow fadeInUp" data-wow-delay="0s">PACKAGES</h1>
-            <p class="wow fadeInUp" data-wow-delay="0.2s"> Lorem ipsum dolor sit. Incidunt laborum beatae earum nihil odio consequatur officiis <br class="hidden-xs">
-              tempore consequuntur officia ducimus unde doloribus quod unt repell </p>
-          </div>
-          <div class="col-sm-6">
-            <div class="table-left wow fadeInUp" data-wow-delay="0.4s">
-              <div class="pricing-details">
-                <h2>For Beginners</h2>
-                <span>$49.50</span>
-                <ul>
-                  <li>Consectetur adipiscing</li>
-                  <li>Nunc luctus nulla et tellus</li>
-                  <li>Suspendisse quis metus</li>
-                  <li>Vestibul varius fermentum erat</li>
-                </ul>
-                <button class="btn btn-primary btn-action btn-fill">Get Plan</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="table-right wow fadeInUp" data-wow-delay="0.6s">
-              <div class="pricing-details">
-                <h2>For Professionals</h2>
-                <span>$99.50</span>
-                <ul>
-                  <li>Consectetur adipiscing</li>
-                  <li>Nunc luctus nulla et tellus</li>
-                  <li>Suspendisse quis metus</li>
-                  <li>Vestibul varius fermentum erat</li>
-                </ul>
-                <button class="btn btn-primary btn-action btn-fill">Get Plan</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    
-    <!-- Subscribe Form -->
-    <!-- <div class="cta-sub no-color">
-      <div class="container">
-        <div class="cta-inner">
-          <h1 class="wow fadeInUp" data-wow-delay="0s">Sign Up to Our Newsletter and get exciting offers</h1>
-          <p class="wow fadeInUp" data-wow-delay="0.2s"> Enter your email address we promise, never disclose<br class="hidden-xs">
-            or sell your email address. </p>
-          <div class="form wow fadeInUp" data-wow-delay="0.3s">
-            <form class="subscribe-form center-form wow zoomIn" action="php/subscribe.php" method="post" name="subscribeform" id="subscribeform">
-              <input class="mail" type="email" name="email" placeholder="Join the wait list" autocomplete="off" id="subemail">
-              <input class="submit-button" type="submit" value="Subscribe" name="send" id="subsubmit">
-            </form> -->
-            <!-- subscribe message -->
-            <!-- <div id="mesaj"></div> -->
-            <!-- subscribe message --> 
-          <!-- </div>
-        </div>
-      </div>
-    </div> -->
+
+  
+  
     
     <!-- Footer Section -->
     <div class="footer" id="contact">
       <div class="container">
         <div class="col-md-6 contact">
-          <h1>About The Creators</h1>
-          <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, <br>
-            vel illum dolore eu feugiat nulla facilisis at vero Duis autem vel eum iriure dolor in <br>
-            hendrerit in vulputate velit esse eros et accumsan.</p>
-          <p>Pellentesque eget dolor gravida, tempus purus ac, ultricies mauris. Etiam est nisl,<br>
-            molestie sed egestas bibendum, varius eu diam.</p>
+          <h1>About The Developers</h1>
+          <p>This project was created by Gabby Benefield, Spencer Audet, and Harrison Brazelton, 
+            who are Management Information Systems (MIS) students at The University of Alabama.  </p>
+          <p>The project was for MIS 321 (Business Programming II), for MIS students who are in their 
+            second semester in the undergraduate program.</p>
+          <p>To learn more about the project's source code, click on the GitHub link.</p>
         </div>
         <div class="col-md-3 contact footer-menu">
           <h1>Social</h1>
           <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
             <li><a href="https://github.com/gnmoody/tlac-group1-mis321-v2">Github</a></li>
           </ul>
         </div>
         <div class="col-md-3 contact">
           <h1>Contact Us</h1>
-          <p> Contact our 24/7 customer support if you have any questions. We'll help you out. </p>
-          <a href="mailto:support@gmail.com">contact@iland.com</a> </div>
+          <p> If you have questions about the website, contact the developers. We'll do our best to answer your questions. </p>
+          <a href="mailto:gnmoody@crimson.ua.edu">Click Here</a> </div>
       </div>
     </div>
   </div>
@@ -380,5 +209,6 @@
 <script type="text/javascript" src="./resources/scripts/menu.js"></script> 
 <script type="text/javascript" src="./resources/scripts/custom.js"></script> 
 <script src="./resources/scripts/jquery.subscribe.js"></script>
+<script src="./resources/scripts/index.js"></script> <!--custom js-->
 </body>
 </html>
