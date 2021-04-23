@@ -180,7 +180,7 @@
                       <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
                       <div class="row form-check"> <!--Cardio-->
                         <div class="col-md-6">
-                          <input class="form-check-input" type="checkbox" value="4" id="cardioSelect">
+                          <input class="form-check-input" type="checkbox" value="1" id="cardioSelect">
                           <label class="form-check-label" for="cardioSelect">Cardio</label>
                         </div>
                         <div class="col-md-6">
@@ -190,7 +190,7 @@
                       </div><!--end row-->
                       <div class="row form-check"> <!--Strength Training-->
                         <div class="col-md-6">
-                          <input class="form-check-input" type="checkbox" value="14" id="stSelect">
+                          <input class="form-check-input" type="checkbox" value="2" id="stSelect">
                           <label class="form-check-label" for="stSelect">Strength Training</label>
                         </div>
                         <div class="col-md-6">
@@ -200,7 +200,7 @@
                       </div> <!--end row -->
                       <div class="row form-check"> <!--kickboxing-->
                         <div class="col-md-6">
-                          <input class="form-check-input" type="checkbox" value="24" id="kbSelect">
+                          <input class="form-check-input" type="checkbox" value="3" id="kbSelect">
                           <label class="form-check-label" for="kbSelect">Kickboxing</label>
                         </div>
                         <div class="col-md-6">
@@ -210,7 +210,7 @@
                       </div> <!--end row-->
                       <div class="row form-check"> <!--Yoga-->
                         <div class="col-md-6">
-                          <input class="form-check-input" type="checkbox" value="34" id="yogaSelect">
+                          <input class="form-check-input" type="checkbox" value="4" id="yogaSelect">
                           <label class="form-check-label" for="yogaSelect">Yoga</label>
                         </div>
                         <div class="col-md-6">
@@ -226,8 +226,13 @@
                   </div>
                 </div>
               </div> <!--end row-->
-              <div class="row text-center" id="custEditProfileErrorMsg"><small class="text-muted" id="mustEnterCurrPasswordMsg" style="padding-top: 10px; display: none;">You must enter your current password to make changes.</small>
-                <small class="text-muted" id="incorrectPasswordMsg" style="padding-top: 10px; display: none;">Current Password is incorrect.</small></div>
+              <div class="row text-center" id="custEditProfileErrorMsg">
+                <small class="text-muted" id="mustEnterCurrPasswordMsg" style="padding-top: 10px; display: none;">You must enter your current password to make changes.</small>
+                <small class="text-muted" id="incorrectPasswordMsg" style="padding-top: 10px; display: none;">Current Password is incorrect.</small>
+              </div>
+              <div class="row text-center">
+                <small class="text-muted" id="trnUpdateSuccessMsg" style="padding-top: 10px; display: none;">Profile changes saved successfully!</small>
+              </div>
                 <div class="row text-center"> <!--save changes button-->
                   <button class="btn btn-lg btn-success" type="button" id="btnEditProfile" onclick="trainerEditProfile()">Submit Profile Changes</button>
                 </div>

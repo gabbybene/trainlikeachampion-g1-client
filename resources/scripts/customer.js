@@ -9,13 +9,11 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 
 
-
-//Check https://github.com/niinpatel/calendarHTML-Javascript/blob/master/scripts.js for a possible JS calendar
 function handleCustomerDashboardOnLoad(){ //load each part of dashboard
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
-    // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -66,8 +64,8 @@ function getConfirmedAppointments(customer){
     //Get appointments from DB that match the customer ID In the url & have a date of today or in the future.
     //return that array of appointment objects
     let html = "";
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
-    // const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetConfirmedAppointmentsForCustomer/"+customer.customerId;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -143,8 +141,8 @@ function getFormattedTime(hours, minutes){
 //FOR EDIT CUSTOMER APPT MODAL in viewCustAppointments section
 function showEditCustApptModal(apptID){
     //Make API call to get appointment with the passed-in ID from the database
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
-    // const apptApiUrl = "https://https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -188,8 +186,8 @@ function cancelCustApptOnClick(apptID){
     //get customerID and create a body Object to send in the PUT request
     let customerId = getCustomerId();
     let bodyObj = [customerId, apptID];
-    const cancelApptApiUrl = "https://localhost:5001/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
-    // const cancelApptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
+    // const cancelApptApiUrl = "https://localhost:5001/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
+    const cancelApptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByDeletingCustomerID/"+bodyObj;
     //make an int[] to send into the put request. [0]=custID, [1]=apptID
     fetch(cancelApptApiUrl, {
         method: "PUT",
@@ -215,8 +213,8 @@ function apptCanceledCloseModal(){
     //if customer canceled an appointment, reload their confirmed appts & the available appt calendar, THEN close the modal
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
-    // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -257,8 +255,8 @@ function getAvailableAppointmentCalendar(currentMonth, currentYear){
     let d = new Date(currentYear, mon);
 
     //GET DISTINCT dates of available appointments, for use in populating the calendar
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetDistinctAvailableAppointments";
-    // const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointments/GetDistinctAvailableAppointments";
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetDistinctAvailableAppointments";
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetDistinctAvailableAppointments";
     var fullDistinctDateTimeArray = []; 
     var distinctDateArray = []; 
     fetch(apptApiUrl).then(function(response){
@@ -355,15 +353,29 @@ function setCalendarHeader(currentMonth, currentYear)
 }
 
 function nextMonth() {
-    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
-    currentMonth = (currentMonth + 1) % 12;
+    if(currentMonth === 11){ //if at December
+        //go to the next year & adjust the month to 0
+        currentYear++;
+        currentMonth = (currentMonth + 1) % 12;
+    }
+    else { //if not at December
+        currentMonth++;
+    }
+    //reload calendar & header 
     setCalendarHeader(currentMonth, currentYear);
     getAvailableAppointmentCalendar(currentMonth, currentYear);
 }
 
 function previousMonth() {
-    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
-    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    if(currentMonth === 0){ //if at January
+        //go to the previous year & to month 11
+        currentYear--;
+        currentMonth = 11;
+    }
+    else{ //if not at January
+        currentMonth--;
+    }
+    //reload calendar & header
     setCalendarHeader(currentMonth, currentYear);
     getAvailableAppointmentCalendar(currentMonth, currentYear);
 }
@@ -375,8 +387,8 @@ function showMakeAppointmentModal(value){
     let selectedDate = value;
     
     //Make API call to get available appointments matching user-selected date
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
-    // const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAvailableAppointmentsByDate/"+selectedDate;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -426,8 +438,8 @@ function showMakeAppointmentModal(value){
 
 function showApptDetails(apptID){
     //Make API call to get appointment details corresponding to the id
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
-    // const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -493,8 +505,8 @@ function toggleCreditCardForm(){
 
 function addCustToAppointment(apptID){
       //Make API call to get appointment details corresponding to the id
-    const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
-    // const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
+    // const apptApiUrl = "https://localhost:5001/api/Appointment/GetAppointmentByID/"+apptID;
+    const apptApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/GetAppointmentByID/"+apptID;
     fetch(apptApiUrl).then(function(response){          
         console.log(response);
         return response.json();
@@ -561,8 +573,8 @@ function addCustToAppointment(apptID){
             }
             console.log(JSON.stringify(bodyObj));
 
-            const addCustApiUrl = "https://localhost:5001/api/Appointment/PutByAddingCustomer/";
-            // const addCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByAddingCustomer/";
+            // const addCustApiUrl = "https://localhost:5001/api/Appointment/PutByAddingCustomer/";
+            const addCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Appointment/PutByAddingCustomer/";
             fetch(addCustApiUrl, {
                 method: "PUT",
                 headers: {
@@ -599,8 +611,8 @@ function closeMakeAppointmentModal(){
     //if customer made an appointment, reload the the calendar & available appointments, then close the modal
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
-    // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -637,19 +649,22 @@ function getCustomerProfileForm(customer){
     document.getElementById("updateCustPhone").value = customer.phoneNo;
 
     for(var i in customer.customerActivities){ //update checked status of activities
-        if(customer.customerActivities[i].activityId == 4){ // 4 = cardio
+        if(customer.customerActivities[i].activityId == 1){ // 1 = cardio
+            console.log("customerActivities["+i+"].activityId is " + customer.customerActivities[i].activityId);
             document.getElementById("cardio").checked = true;
         }
-        else if(customer.customerActivities[i].activityId == 14){ // 14 = strength training
+        else if(customer.customerActivities[i].activityId == 2){ // 2 = strength training
+            console.log("customerActivities["+i+"].activityId is " + customer.customerActivities[i].activityId);
             document.getElementById("strengthTraining").checked = true;
         }
-        else if(customer.customerActivities[i].activityId == 24){ // 24 = yoga
-            document.getElementById("yoga").checked = true;
-        }
-        else if(customer.customerActivities[i].activityId == 34){ // 34 = kickboxing
+        else if(customer.customerActivities[i].activityId == 3){ // 3 = kickboxing
+            console.log("customerActivities["+i+"].activityId is " + customer.customerActivities[i].activityId);
             document.getElementById("kickboxing").checked = true;
         }
-
+        else if(customer.customerActivities[i].activityId == 4){ // 4 = yoga
+            console.log("customerActivities["+i+"].activityId is " + customer.customerActivities[i].activityId);
+            document.getElementById("yoga").checked = true;
+        }
     }
 
     if(customer.referredBy != null) { //update checked/referrer name if there is a referred by
@@ -669,8 +684,8 @@ function custEditProfile(){
     //get current customer object
     let id = getCustomerId();
     let customer = [];
-    const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
-    // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/GetCustomerByID/"+id;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+id;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -694,8 +709,8 @@ function custEditProfile(){
             if(document.getElementById("yesReferred").checked){
                 let referredByEmail = document.getElementById("referrerName").value;
                 let referredById;
-                const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
-                // const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
+                // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+                const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
                 fetch(findReferredApiUrl).then(function(response){
                     console.log(response);
                     return response.json();
@@ -707,8 +722,8 @@ function custEditProfile(){
                     let bodyObj = getUpdatedCustomerObj();
                     console.log(JSON.stringify(bodyObj));
 
-                    const putCustApiUrl = "https://localhost:5001/api/Customer/PutCustomerWithReferredBy/"+referredById;
-                    // const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PutCustomerWithReferredBy/"+referredById;
+                    // const putCustApiUrl = "https://localhost:5001/api/Customer/PutCustomerWithReferredBy/"+referredById;
+                    const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PutCustomerWithReferredBy/"+referredById;
                     //make api call to UPDATE customer
                     fetch(putCustApiUrl, {
                         method: "PUT",
@@ -719,8 +734,8 @@ function custEditProfile(){
                         body: JSON.stringify(bodyObj)
                     }).then(function(response){
                         //get updated customer to reload form
-                        const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
-                        // const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
+                        // const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                        const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
                         fetch(getCustApiUrl).then(function(response){
                             console.log(response);
                             return response.json();
@@ -740,31 +755,36 @@ function custEditProfile(){
                 //if referredBy is not checked, get customer object to send in body of PUT request
                 let referredById = "";
                 let bodyObj = getUpdatedCustomerObj();
-                const putCustApiUrl = "https://localhost:5001/api/Customer/";
-                // const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/";
-                    //make api call to UPDATE customer
-                    fetch(putCustApiUrl, {
-                        method: "PUT",
-                        headers: {
-                            "Accept": 'application/json',
-                            "Content-Type": 'application/json'
-                        },
-                        body: JSON.stringify(bodyObj)
-                    }).then(function(response){
-                        //get updated customer to reload form
-                        const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
-                        // const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
-                        fetch(getCustApiUrl).then(function(response){
-                            console.log(response);
-                            return response.json();
-                        }).then(function(json){
-                            getCustomerProfileForm(json);
-                            console.log(response);
-                        }).catch(function(error){
-                            console.log(error);
-                        })
+                // const putCustApiUrl = "https://localhost:5001/api/Customer/";
+                const putCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/";
+                //make api call to UPDATE customer
+                fetch(putCustApiUrl, {
+                    method: "PUT",
+                    headers: {
+                        "Accept": 'application/json',
+                        "Content-Type": 'application/json'
+                    },
+                    body: JSON.stringify(bodyObj)
+                }).then(function(response){
+                    //get updated customer to reload form
+                    // const getCustApiUrl="https://localhost:5001/api/Customer/GetCustomerByID/"+customer.customerId;
+                    const getCustApiUrl="https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/GetCustomerByID/"+customer.customerId;
+                    fetch(getCustApiUrl).then(function(response){
                         console.log(response);
+                        return response.json();
+                    }).then(function(json){
+                        getCustomerProfileForm(json);
+
+                        //show the update success message and clear out newEmail and newPassword fields
+                        document.getElementById("custUpdateSuccessMsg").style.display = "show";
+                        document.getElementById("newEmail").value = "";
+                        document.getElementById("newPassword").value = "";
+                        console.log(response);
+                    }).catch(function(error){
+                        console.log(error);
                     })
+                    console.log(response);
+                })
             }     
         }
     }).catch(function(error){
@@ -811,25 +831,30 @@ function getUpdatedCustomerObj(){
     
     //handle preferred activities
     let inputActivityIDs = [];
-    if(document.getElementById("cardio").checked === true){
+    if(document.getElementById("cardio").checked == true){
+        console.log("cardio checked");
         let cardio = document.getElementById("cardio").value;
         inputActivityIDs.push(parseInt(cardio))
     }
-    if(document.getElementById("strengthTraining").checked === true){
+    if(document.getElementById("strengthTraining").checked == true){
+        console.log("strengthTraining checked");
         let st = document.getElementById("strengthTraining").value;
         inputActivityIDs.push(parseInt(st));
     }
-    if(document.getElementById("kickboxing").checked === true){
+    if(document.getElementById("kickboxing").checked == true){
+        console.log("kickboxing checked");
         let kb = document.getElementById("kickboxing").value;
         inputActivityIDs.push(parseInt(kb));
     }
-    if(document.getElementById("yoga").checked === true){
+    if(document.getElementById("yoga").checked == true){
+        console.log("yoga checked");
         let yoga = document.getElementById("yoga").value;
         inputActivityIDs.push(parseInt(yoga));
     }
     let activityArray = [];
     if(inputActivityIDs.length > 0){
         for(var i in inputActivityIDs){
+            console.log("inputActivityIDs["+i+"] is " + inputActivityIDs[i]);
             activityArray[i] = {
                 activityId: inputActivityIDs[i]
             }

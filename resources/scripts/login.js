@@ -55,8 +55,8 @@ function handleCustomerSignIn()
     let customer = "";
     let errorMsgHtml = "";
 
-    const customerApiUrl = "https://localhost:5001/api/Customer/"+inputEmail;
-    // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+inputEmail;
+    // const customerApiUrl = "https://localhost:5001/api/Customer/"+inputEmail;
+    const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+inputEmail;
     fetch(customerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -85,7 +85,6 @@ function handleCustomerSignIn()
 }
 
 function validateNewCustomerInputs(){
-    console.log("made it to validateNewCustomerInputs")
     try{
         let email = document.getElementById("custEmail").value;
         let password = document.getElementById("custPassword").value;
@@ -109,20 +108,20 @@ function validateNewCustomerInputs(){
                 alert("Email is required.");
                 document.getElementById("custEmail").focus();
             }
-            if(password == null || password == ""){
+            else if(password == null || password == ""){
                 alert("Password is required.");
                 document.getElementById("custPassword").focus();
             }
-            if(fName ==  null || fName == ""){
+            else if(fName ==  null || fName == ""){
                 alert("First Name is required.");
                 document.getElementById("custFirstName").focus();
             }
-            if(lName == null || lName == ""){
+            else if(lName == null || lName == ""){
                 alert("Last Name is required.");
                 document.getElementById("custLastName").focus();
             }
             //error checking for dob
-            if(dob == null || dob == "" || dob.toString() > "2008-01-01"){
+            else if(dob == null || dob == "" || dob.toString() > "2008-01-01"){
                 if(dob == null || dob == ""){
                     alert("Date of Birth is required..");
                 }
@@ -131,13 +130,13 @@ function validateNewCustomerInputs(){
                 }
                 document.getElementById("newCustBirthDate").focus();
             }
-            //error checkign for referredby
-            if(referred && (referrerName == null || referrerName == "")){
+            //error checking for referredby
+            else if(referred && (referrerName == null || referrerName == "")){
                 alert("If you were referred by a friend, their email is required.");
                 document.getElementById("referrerName").focus();
             }
             //error checking for phoneNumber, if entered
-            if(phoneNumber != null && phoneNumber != undefined){
+            else if(phoneNumber != null && phoneNumber != undefined && phoneNumber != ""){
                 if(isNaN(phoneNumber)){
                     alert("Phone number must be entered as XXXXXXXXXX, with no dashes or other characters.");
                     document.getElementById("newCustPhone").focus();
@@ -150,9 +149,10 @@ function validateNewCustomerInputs(){
                     }
                 }
             }
-            
-            
-            handleCreateNewCustOnClick();
+            else {
+                //only if all tests pass, create new customer
+                handleCreateNewCustOnClick();
+            }
         }
     }
     catch(e) {
@@ -212,9 +212,6 @@ function handleCreateNewCustOnClick(){
             }
         }
     }
-    for(var i in activityArray){
-        console.log("activityArray["+i+"]:" + activityArray[i].activityId);
-    }
 
     let referredByEmail;
     //If yesReferred is checked, get referrerName ****actually the referrer's email****
@@ -225,15 +222,13 @@ function handleCreateNewCustOnClick(){
     if(referredByEmail != undefined || referredByEmail != ""){
         //if user entered a referredByEmail
         let referredById;
-        const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
-        // const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer"+referredByEmail;
+        // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+        const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer"+referredByEmail;
         fetch(findReferredApiUrl).then(function(response){
             console.log(response);
             return response.json();
         }).then(function(json){
             //set referred by Id to the customer id that was found
-            console.log("json.customerId is ");
-            console.log(json.customerId);
             referredById = json.customerId;
 
             //if referredById was found, create customer object to send in body of PUT request
@@ -249,11 +244,8 @@ function handleCreateNewCustOnClick(){
                 customerActivities: activityArray
             };
 
-            console.log("TEST");
-            console.log(JSON.stringify(bodyObj));
-
-            const postCustApiUrl = "https://localhost:5001/api/Customer/PostCustomerWithReferredBy/"+referredById;
-            // const postCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PostCustomerWithReferredBy/"+referredById;
+            // const postCustApiUrl = "https://localhost:5001/api/Customer/PostCustomerWithReferredBy/"+referredById;
+            const postCustApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/PostCustomerWithReferredBy/"+referredById;
             //make api call to CREATE customer
             fetch(postCustApiUrl, {
                 method: "POST",
@@ -285,8 +277,8 @@ function handleCreateNewCustOnClick(){
         };
     
         //make api call to CREATE customer
-        const customerApiUrl = "https://localhost:5001/api/Customer";
-        // const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer";
+        // const customerApiUrl = "https://localhost:5001/api/Customer";
+        const customerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer";
         fetch(customerApiUrl, {
             method: "POST",
             headers: {
@@ -308,8 +300,8 @@ function handleCreateNewCustOnClick(){
 
 function sendCustomerToDashboard(email){
     //get new customer's id and send them to ./customer.html?id=@id@
-    const getCustomerApiUrl = "https://localhost:5001/api/Customer/"+email;
-    // const getCustomerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+email;
+    // const getCustomerApiUrl = "https://localhost:5001/api/Customer/"+email;
+    const getCustomerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+email;
     fetch(getCustomerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -370,8 +362,8 @@ function handleTrainerSignIn(){
     let trainer = "";
     let errorMsgHtml = "";
 
-    const trainerApiUrl = "https://localhost:5001/api/Trainer/"+inputEmail;
-    // const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+inputEmail;
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer/"+inputEmail;
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+inputEmail;
     fetch(trainerApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -438,39 +430,22 @@ function validateNewTrainerInputs(){
                 document.getElementById("trainerLName").focus();
                 // return false;
             }
-            else if(dob == null || dob == "" || dob.toString() > "2008-01-01"){
+            else if(dob == null || dob == "" || dob == undefined || dob.toString() > "2008-01-01"){
                 if(dob == null || dob == ""){
-                    alert("Date of Birth is required..");
+                    alert("Date of Birth is required.");
                 }
                 else {
                     alert("Date of Birth must be greater than 01/01/2008");
                 }
-                document.getElementById("custBirthDate").focus();
+                document.getElementById("trainerBirthDate").focus();
                 // return false;
             }
             else if(!cardioSelected && !stSelected && ! kbSelected && !yoSelected)
             {
+                //if no activity is selected, show error
                 alert("You must select at least one activity and enter its price.");
             }
-            else {
-                if(cardioSelected && document.getElementById("trnCardioPrice").value <= 0){
-                    alert("You must enter a price for Cardio.");
-                }
-                else if(stSelected && document.getElementById("trnStrengthTrainingPrice").value <= 0){
-                    alert("You must enter a price for Strength Training.");
-                }
-                else if(kbSelected && document.getElementById("trnKickboxingPrice").value <= 0){
-                    alert("You must enter a price for Kickboxing.");
-                }
-                else if(yoSelected && document.getElementById("trnYogaPrice").value <= 0){
-                    alert("You must enter a price for Yoga.");
-                }
-                // else {
-                //     createNewTrainer();
-                // }      
-            }
-            //error checking for phoneNumber, if entered
-            if(phoneNumber != null && phoneNumber != undefined){
+            else  if(phoneNumber != null && phoneNumber != undefined && phoneNumber != ""){ //error checking for phoneNumber, if entered 
                 if(isNaN(phoneNumber)){
                     alert("Phone number must be entered as XXXXXXXXXX, with no dashes or other characters.");
                     document.getElementById("newTrainerPhone").focus();
@@ -483,7 +458,26 @@ function validateNewTrainerInputs(){
                     }
                 }
             }
-            createNewTrainer();
+            else if((cardioSelected && document.getElementById("trnCardioPrice").value <= 0) || (stSelected && document.getElementById("trnStrengthTrainingPrice").value <= 0) 
+            || (kbSelected && document.getElementById("trnKickboxingPrice").value <= 0) || (yoSelected && document.getElementById("trnYogaPrice").value <= 0)) {
+                //if any activity is selected but no price entered, figure out the error
+                if(cardioSelected && document.getElementById("trnCardioPrice").value <= 0){
+                    alert("You must enter a price for Cardio.");
+                }
+                else if(stSelected && document.getElementById("trnStrengthTrainingPrice").value <= 0){
+                    alert("You must enter a price for Strength Training.");
+                }
+                else if(kbSelected && document.getElementById("trnKickboxingPrice").value <= 0){
+                    alert("You must enter a price for Kickboxing.");
+                }
+                else if(yoSelected && document.getElementById("trnYogaPrice").value <= 0){
+                    alert("You must enter a price for Yoga.");
+                }  
+            }    
+            else {
+                //only if all other tests passed, create new trainer
+                createNewTrainer();
+            }
         } 
     }
     catch(e) {
@@ -493,8 +487,8 @@ function validateNewTrainerInputs(){
 }
 
 function createNewTrainer(){ 
-    const trainerApiUrl = "https://localhost:5001/api/Trainer";
-    // const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer";
+    // const trainerApiUrl = "https://localhost:5001/api/Trainer";
+    const trainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer";
 
     //get trainer data
     let inputEmail = document.getElementById("newTrainerEmail").value;
@@ -538,51 +532,43 @@ function createNewTrainer(){
             });
         }
     }
-    if(activities.length == 0){
-        document.getElementById("chooseActivityErrorMessage").style.display = "block";
-    }
     //handle phone number
     let phoneNumber="";
     if(document.getElementById("newTrainerPhone").value != undefined && document.getElementById("newTrainerPhone").value != null){
         phoneNumber = document.getElementById("newTrainerPhone").value;
-        console.log("value of newTrainerPhone:");
-        console.log(phoneNumber);
     }
 
-    // else {
-        //set user inputs to a body object
-        var bodyObj = {
-            fName: inputFirstName,
-            lName: inputLastName,
-            birthDate: dob,
-            gender: inputGender,
-            email: inputEmail,
-            password: inputPassword, 
-            phoneNo: phoneNumber,
-            trainerActivities: activities
-        };
+    //set up object to send in POST body
+    var bodyObj = {
+        fName: inputFirstName,
+        lName: inputLastName,
+        birthDate: dob,
+        gender: inputGender,
+        email: inputEmail,
+        password: inputPassword, 
+        phoneNo: phoneNumber,
+        trainerActivities: activities
+    };
 
-        //make api call to create trainer
-        fetch(trainerApiUrl, {
-            method: "POST",
-            headers: {
-                "Accept": 'application/json',
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(bodyObj)
-        }).then(function(response){
-            console.log(response);
-            console.log("made it to the post");
-            sendTrainerToDashboard(inputEmail);
-        })
-    // }
-    
+    //make api call to create trainer
+    fetch(trainerApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(bodyObj)
+    }).then(function(response){
+        console.log(response);
+        console.log("made it to the post");
+        sendTrainerToDashboard(inputEmail);
+    })
 }
 
 function sendTrainerToDashboard(email){
     //get new customer's id and send them to Trainer Dashboard
-    const getTrainerApiUrl = "https://localhost:5001/api/Trainer/"+email;
-    // const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+email;
+    // const getTrainerApiUrl = "https://localhost:5001/api/Trainer/"+email;
+    const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/"+email;
     fetch(getTrainerApiUrl).then(function(response){
         console.log(response);
         return response.json();

@@ -180,19 +180,19 @@
                         <h3>What activites do you prefer to do?</h3>
                         <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
                         <div class="form-check"> <!--Cardio-->
-                          <input class="form-check-input" type="checkbox" id="cardio" value="4">
+                          <input class="form-check-input" type="checkbox" id="cardio" value="1">
                           <label class="form-check-label" for="cardio">Cardio</label>
                         </div>
                         <div class="form-check"> <!--Strength Training-->
-                          <input class="form-check-input" type="checkbox"  id="strengthTraining" value="14">
+                          <input class="form-check-input" type="checkbox"  id="strengthTraining" value="2">
                           <label class="form-check-label" for="strengthTraining">Strength Training</label>
                         </div>
                         <div class="form-check"> <!--Kickboxing-->
-                          <input class="form-check-input" type="checkbox"  id="kickboxing" value="24">
+                          <input class="form-check-input" type="checkbox"  id="kickboxing" value="3">
                           <label class="form-check-label" for="kickboxing">Kickboxing</label>
                         </div>
                         <div class="form-check"> <!--Yoga-->
-                          <input class="form-check-input" type="checkbox"  id="yoga" value="34">
+                          <input class="form-check-input" type="checkbox"  id="yoga" value="4">
                           <label class="form-check-label" for="yoga">Yoga</label>
                         </div>
                       </div>
@@ -217,9 +217,13 @@
                       </div>
                     </div> 
                   </div> <!--end row-->
-                  <div class="row text-center" id="custEditProfileErrorMsg"><small class="text-muted" id="mustEnterCurrPasswordMsg" style="padding-top: 10px; display: none;">You must enter your current password to make changes.</small>
-                    <small class="text-muted" id="incorrectPasswordMsg" style="padding-top: 10px; display: none;">Current Password is incorrect.</small></div>
-                    <div></div>
+                  <div class="row text-center" id="custEditProfileErrorMsg">
+                    <small class="text-muted" id="mustEnterCurrPasswordMsg" style="padding-top: 10px; display: none;">You must enter your current password to make changes.</small>
+                    <small class="text-muted" id="incorrectPasswordMsg" style="padding-top: 10px; display: none;">Current Password is incorrect.</small>
+                  </div>
+                  <div class="row text-center">
+                    <small class="text-muted" id="custUpdateSuccessMsg" style="padding-top: 10px; display: none;">Profile changes saved successfully!</small>
+                  </div>
                   <div class="row text-center"> <!--save changes button-->
                     <button class="btn btn-lg btn-success" type="button" id="btnEditProfile" onclick="custEditProfile()">Submit Profile Changes</button>
                   </div>

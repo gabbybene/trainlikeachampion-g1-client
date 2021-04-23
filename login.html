@@ -104,12 +104,16 @@
     <hr>
       <form id="new-customer-form" id="logreg-forms"> <!--id="logreg-forms" will change styling-->
         <h2 class="login-heading">Welcome! Are you ready to Train Like A Champion?</h2>
-        <div id="newUserLoginInfo" class="new-user-form-inputs form-group"> <!--Email and Password-->
-          <h4 style="font-style: italic">Your email address and password will be used to log in in the future.</h4>
+        <div id="newUserLoginInfo" class="row new-user-form-inputs form-group"> <!--Email and Password-->
+          <h4 style="font-style: italic;">Your email address and password will be used to log in in the future.</h4>
+          <div class="col-sm-6">
             <label for="custEmail">Email Address</label>
             <input type="email" name="custEmail" id="custEmail" class="form-control" placeholder="Enter email address" required="" autofocus="">
+          </div>
+          <div class="col-sm-6">
             <label for="custPassword">Password</label>
-            <input type="password" name="custPassword" id="custPassword" class="form-control" placeholder="Password" required="">
+            <input type="password" name="custPassword" id="custPassword" class="form-control" placeholder="Password" required="">           
+          </div>
         </div>
         <hr>
           <div class="row new-user-form-inputs form-group">
@@ -155,25 +159,25 @@
                 <h3>What activites do you prefer to do?</h3>
                 <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="4" name="cardoi" id="cardio" checked>
+                  <input class="form-check-input" type="checkbox" value="1" name="cardoi" id="cardio" checked>
                   <label class="form-check-label" for="cardio">
                     Cardio
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="14" name="strengthTraining" id="strengthTraining" checked>
+                  <input class="form-check-input" type="checkbox" value="2" name="strengthTraining" id="strengthTraining" checked>
                   <label class="form-check-label" for="strengthTraining">
                     Strength Training
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="24" name="kickboxing" id="kickboxing" checked>
+                  <input class="form-check-input" type="checkbox" value="3" name="kickboxing" id="kickboxing" checked>
                   <label class="form-check-label" for="kickboxing">
                     Kickboxing
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="34" name="yoga" id="yoga" checked>
+                  <input class="form-check-input" type="checkbox" value="4" name="yoga" id="yoga" checked>
                   <label class="form-check-label" for="yoga">
                     Yoga
                   </label>
@@ -305,7 +309,7 @@
             <p style="font-size: 10px; font-style: italic">Select all that apply:</p>
             <div class="row form-check"> <!--Cardio-->
               <div class="col-sm-6">
-                <input class="form-check-input" type="checkbox" value="4" id="trnCardio" onclick="toggleActivitySelected(id)">
+                <input class="form-check-input" type="checkbox" value="1" id="trnCardio" onclick="toggleActivitySelected(id)">
                 <label class="form-check-label" for="trnCardio">Cardio</label>
               </div>
               <div class="col-sm-6">
@@ -315,7 +319,7 @@
             </div>
             <div class="row form-check"> <!--Strength Training-->
               <div class="col-sm-6">
-                <input class="form-check-input" type="checkbox" value="14" id="trnStrengthTraining" onclick="toggleActivitySelected(id)">
+                <input class="form-check-input" type="checkbox" value="2" id="trnStrengthTraining" onclick="toggleActivitySelected(id)">
                 <label class="form-check-label" for="trnStrengthTraining">Strength Training</label>
               </div>
               <div class="col-sm-6">
@@ -325,7 +329,7 @@
             </div>
             <div class="row form-check"> <!--Kickboxing-->
               <div class="col-sm-6">
-                <input class="form-check-input" type="checkbox" value="24" id="trnKickboxing" onclick="toggleActivitySelected(id)">
+                <input class="form-check-input" type="checkbox" value="3" id="trnKickboxing" onclick="toggleActivitySelected(id)">
                 <label class="form-check-label" for="trnKickboxing">Kickboxing</label>
               </div>
               <div class="col-sm-6">
@@ -335,7 +339,7 @@
             </div>
             <div class="row form-check"> <!--Yoga-->
               <div class="col-sm-6">
-                <input class="form-check-input" type="checkbox" value="34" id="trnYoga" onclick="toggleActivitySelected(id)">
+                <input class="form-check-input" type="checkbox" value="4" id="trnYoga" onclick="toggleActivitySelected(id)">
                 <label class="form-check-label" for="trnYoga">Yoga</label>
               </div>
               <div class="col-sm-6">
