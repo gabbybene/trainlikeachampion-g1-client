@@ -812,8 +812,8 @@ function trainerEditProfile(){
             .then(function(response){
                 console.log(response);
                 //reload trainer profile form
-                const getTrainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+trainer.trainerId;
-                // const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+trainer.trainerId;
+                // const getTrainerApiUrl = "https://localhost:5001/api/Trainer/GetTrainerByID/"+trainer.trainerId;
+                const getTrainerApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Trainer/GetTrainerByID/"+trainer.trainerId;
                 fetch(getTrainerApiUrl).then(function(response){
                     console.log(response);
                     return response.json();
