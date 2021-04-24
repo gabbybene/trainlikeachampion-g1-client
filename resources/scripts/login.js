@@ -223,7 +223,7 @@ function handleCreateNewCustOnClick(){
         //if user entered a referredByEmail
         let referredById;
         // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
-        const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer"+referredByEmail;
+        const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
         fetch(findReferredApiUrl).then(function(response){
             console.log(response);
             return response.json();
