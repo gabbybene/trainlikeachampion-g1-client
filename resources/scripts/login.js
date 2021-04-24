@@ -219,7 +219,7 @@ function handleCreateNewCustOnClick(){
         document.getElementById("referrerName").disabled = false;
         referredByEmail = document.getElementById("referrerName").value;
     }
-    if(referredByEmail != undefined || referredByEmail != ""){
+    if(referredByEmail != undefined && referredByEmail != ""){
         //if user entered a referredByEmail
         let referredById;
         // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
@@ -275,6 +275,9 @@ function handleCreateNewCustOnClick(){
             email: inputEmail,
             customerActivities: activityArray
         };
+
+        console.log("REQUEST BODY:");
+        console.log(JSON.stringify(bodyObj));
     
         //make api call to CREATE customer
         // const customerApiUrl = "https://localhost:5001/api/Customer";
