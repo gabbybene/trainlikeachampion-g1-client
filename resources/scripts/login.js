@@ -218,13 +218,12 @@ function handleCreateNewCustOnClick(){
     if(document.getElementById("yesReferred").checked){
         document.getElementById("referrerName").disabled = false;
         referredByEmail = document.getElementById("referrerName").value;
-        console.log("referredByEmail is " + referredByEmail);
     }
-    if(referredByEmail != undefined && referredByEmail != ""){
+    if(referredByEmail != undefined || referredByEmail != ""){
         //if user entered a referredByEmail
         let referredById;
-        // const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
-        const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
+        const findReferredApiUrl = "https://localhost:5001/api/Customer/"+referredByEmail;
+        // const findReferredApiUrl = "https://trainlikeachampion-g1-api.herokuapp.com/api/Customer/"+referredByEmail;
         fetch(findReferredApiUrl).then(function(response){
             console.log(response);
             return response.json();
@@ -276,9 +275,6 @@ function handleCreateNewCustOnClick(){
             email: inputEmail,
             customerActivities: activityArray
         };
-
-        console.log("REQUEST BODY:");
-        console.log(JSON.stringify(bodyObj));
     
         //make api call to CREATE customer
         // const customerApiUrl = "https://localhost:5001/api/Customer";
