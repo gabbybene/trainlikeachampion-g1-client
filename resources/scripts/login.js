@@ -218,6 +218,7 @@ function handleCreateNewCustOnClick(){
     if(document.getElementById("yesReferred").checked){
         document.getElementById("referrerName").disabled = false;
         referredByEmail = document.getElementById("referrerName").value;
+        console.log("referredByEmail is " + referredByEmail);
     }
     if(referredByEmail != undefined && referredByEmail != ""){
         //if user entered a referredByEmail
