@@ -2,7 +2,7 @@
 
 Theme Name: Fitness
 Author: designstub
-Author URI: http://www.designstub.com
+Author URL: http://www.designstub.com
 */
 
 
@@ -22,7 +22,6 @@ Author URI: http://www.designstub.com
 8. Subscribe form
 9. Media Queries
 ------------------*/
-
 
 /*----- 1. Reset.css -----*/
 
@@ -226,7 +225,7 @@ p {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #111111;
+  background-color: #FFF;
 }
 
 .navbar-default .navbar-brand .navbar-toggle .collapsed {
@@ -321,6 +320,7 @@ p {
 		text-align: center;
 		border-color: transparent;
 	  background-color: #FFFFFF;
+	 
 	}
 
   .navbar-default .navbar-collapse {
@@ -347,7 +347,8 @@ p {
 	}
 
   .navbar-default .navbar-toggle .icon-bar {
-    background-color: #111111;
+	background-color: #FFF;
+
   }
 }
 
@@ -370,7 +371,7 @@ p {
 }
 
 .navbar-default.past-main .navbar-toggle .icon-bar {
-	background-color: #111111;
+	background-color: #FFF;
 }
 
 .navbar-default.past-main .navbar-nav > li > a {
@@ -406,7 +407,8 @@ p {
 }
 
 .navbar-default.past-main .nav-white .navbar-toggle .icon-bar {
-	background-color: #111111;
+	background-color: #FFF;
+
 }
 
 /* ------------------------------------------------------
@@ -2305,3 +2307,8 @@ padding: 70px 10px 50px 350px;
 /*---------------------------------------------------
 ------- Media Queries for Split Layout Ends ---------
 ---------------------------------------------------*/
+
+#faq-btn-cust, #faq-btn-trn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -11,7 +11,7 @@
 .hero-section-2 {
 	background:url(../images/reflection.jpg);
 	background-size: cover;
-	padding: 150px 0 0 0;
+	padding: 150px 0 150px 0;
 }
 
 .buttons {
@@ -38,11 +38,6 @@
 } */
 
 .btn-cust-trainer {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#faq-btn-cust, #faq-btn-trn {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -366,3 +361,11 @@ button.list-group-item {
     height:45px;
 }
 
+/* custom footer styling for login page to make it taller */
+.footer-login {
+    position:fixed;
+}
+
+.footer-login .contact {
+    position: relative;
+}
