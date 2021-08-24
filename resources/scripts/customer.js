@@ -84,7 +84,8 @@ function getConfirmedAppointments(customer){
                 let apptDate = getFormattedDate(object.appointmentDate);
                 let startTime = getFormattedTime(object.startTime.hours, object.startTime.minutes);
                 let endTime = getFormattedTime(object.endTime.hours, object.endTime.minutes);
-                let activity =  object.appointmentTrainer.trainerActivities[0].activityName;
+                let activity = object.appointmentActivity.activityName;
+                // let activity =  object.appointmentTrainer.trainerActivities[0].activityName;
                 let trainerName = object.appointmentTrainer.fName+ " " + object.appointmentTrainer.lName;
                 //print buttons with appt details
                 html += "<button type=\"button btn\" class=\"list-group-item list-group-item-action\" onclick=\"showEditCustApptModal("+object.appointmentId+")\">";
@@ -155,7 +156,8 @@ function showEditCustApptModal(apptID){
             apptDate: getFormattedDate(object.appointmentDate),
             startTime: getFormattedTime(object.startTime.hours, object.startTime.minutes),
             endTime: getFormattedTime(object.endTime.hours, object.endTime.minutes),
-            activity:  object.appointmentTrainer.trainerActivities[0].activityName,
+            // activity:  object.appointmentTrainer.trainerActivities[0].activityName,
+            activity: object.appointmentActivity.activityName,
             trainerName: object.appointmentTrainer.fName+ " " + object.appointmentTrainer.lName,
             price: object.appointmentCost,
         }
@@ -253,6 +255,7 @@ function getAvailableAppointmentCalendar(currentMonth, currentYear){
     //get month and year for use below
     let mon = currentMonth;
     let d = new Date(currentYear, mon);
+
 
     //GET DISTINCT dates of available appointments, for use in populating the calendar
     // const apptApiUrl = "https://localhost:5001/api/Appointment/GetDistinctAvailableAppointments";
@@ -409,7 +412,8 @@ function showMakeAppointmentModal(value){
                 apptDate: getFormattedDate(object.appointmentDate),
                 startTime: getFormattedTime(object.startTime.hours, object.startTime.minutes),
                 endTime: getFormattedTime(object.endTime.hours, object.endTime.minutes),
-                activity:  object.appointmentTrainer.trainerActivities[0].activityName,
+                activity: object.appointmentActivity.activityName,
+                // activity:  object.appointmentTrainer.trainerActivities[0].activityName,
                 trainerName: object.appointmentTrainer.fName+ " " + object.appointmentTrainer.lName,
                 // price: object.appointmentTrainer.trainerActivities[0].trainerPriceForActivity,
                 price: object.appointmentCost
